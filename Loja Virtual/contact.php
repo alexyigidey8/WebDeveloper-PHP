@@ -1,13 +1,5 @@
+
 <!DOCTYPE>
-
-<!--
-*   Autor: Thelsandro Costa Antunes
-*   Data: 17/12/2018
-*   Engenharia de Computação
-*   Projeto de Loja Virtual em PHP
-*   1ª Versão
--->
-
 <html xmlns="http://www.w3.org/">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,22 +8,22 @@
 <style>
 ul.pagination {
     text-align:center;
-    color:#5DBCD2;
+    color:#1f447f;
 }
 ul.pagination li {
     display:inline;
     padding:0 3px;
 }
 ul.pagination a {
-    color:#5DBCD2;
+    color:#1f447f;
     display:inline-block;
     padding:5px 10px;
-    border:1px solid #5DBCD2;
+    border:1px solid #1f447f;
     text-decoration:none;
 }
 ul.pagination a:hover,
 ul.pagination a.current {
-    background:#5DBCD2;
+    background:#1f447f;
     color:#fff;
 }
 
@@ -48,9 +40,9 @@ ul.pagination a.current {
 
 <div id="manu">
 <ul>
-<li><a style="background:#5DBCD2; color:#fff;" href="index.php">HOME</a></li>
+<li><a  href="index.php">HOME</a></li>
 <li><a href="track.php">MEUS PEDIDOS</a></li>
-<li><a href="contact.php">ATENDIMENTO</a></li>
+<li><a style="background:#5DBCD2; color:#fff;" href="contact.php">ATENDIMENTO</a></li>
 <li><a href="login/login.php">ENTRAR</a></li>
 </ul>
 </div>
@@ -58,34 +50,26 @@ ul.pagination a.current {
 
 <div id="content">
 
-  <?php
-  require_once 'connection/dbconfig.php';
+<center>
+  <form  method="post" action="contact.php" >
 
-  include_once('connection/connectionz.php');
-  include_once('function/functionz.php');
+   <h1 >Contate-nos</h1>
 
 
-//**********************************************
-  echo "No Record";
-//**********************************************
-?>
-
+   <input type="text"  name="name" placeholder="Nome" required /><br><br>
+   <input type="text"  name="email" placeholder="Email" required /><br><br>
+   <input type="text"  name="mobile" placeholder="Celular" required /><br><br>
+   <textarea type="text"  name="message" placeholder="Mensagem required /></textarea><br>
 
 <br>
-<br>
+
+       <button  type="submit"  class="button"> ENVIAR </button>
 
 
 
-    </div>
-<div id="nav">
-    <br>
-    <center>
-    <?php
+ </form>
 
-            // displaying paginaiton.
-          //  echo pagination($statement,$per_page,$page,$url='?');
-            ?>
-    </center>
+</center>
     <br>
 
 </div>
@@ -95,7 +79,8 @@ ul.pagination a.current {
 
     <div id="footer">
 <center>
-      <p> Acesse Nossas Mídias Sociais </p>
+      <p>Conheça Nossas Mídias Sociais</p>
+
       <p><img src="images/facebook.png"> <img src="images/twitter.png">  <img src="images/youtube.png"></p>
 </center>
     <b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
