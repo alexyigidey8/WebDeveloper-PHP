@@ -87,29 +87,29 @@ ul.pagination a.current {
 <div id="manu">
 	<ul>
 		<li><a href="admin.php" >HOME</a></li>
-		<li><a href="product.php" >PRODUCT</a></li>
-		<li><a style="background:#1f447f; color:#fff;" href="order.php" >ORDER</a></li>
-		<li><a href="../login/logout.php?logout=true" >SIGN OUT</a></li>
+		<li><a href="product.php" >PRODUTOS</a></li>
+		<li><a style="background:#5DBCD2; color:#fff;" href="order.php" >PEDIDO</a></li>
+		<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
 	</ul>
 </div>
 <br>
 <div id="content">
-	<h2><a class="button" href="../index.php"> Add Order</a> Admin Access Only [Order Page] </h2>
+	<h2><a class="button" href="../index.php"> Adicionar Pedido</a> Admin Access Only [Order Page] </h2>
 	<center>
   	<table class="altrowstable" id="alternatecolor">
     	<thead>
       	<tr>
         <th>ID</th>
-        <th>Image</th>
-        <th>Name</th>
-				<th>Mobile</th>
+        <th>Imagem</th>
+        <th>Nome</th>
+				<th>Telefone</th>
 				<th>Email</th>
-				<th>Address</th>
-				<th>Order</th>
-		    <th>Date</th>
+				<th>Endereço</th>
+				<th>Pedido</th>
+		    <th>Data</th>
 				<th>Status</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Editar</th>
+        <th>Deletar</th>
         </tr>
       </thead>
       <tbody>
@@ -150,7 +150,7 @@ ul.pagination a.current {
 <div id="footer3">
 	<center>
 	      <p> Acesse Nossas Mídias Sociais </p>
-	      <p><img src="images/facebook.png"> <img src="images/twitter.png">  <img src="images/youtube.png"></p>
+	      <p><img src="../images/facebook.png"> <img src="../images/twitter.png">  <img src="../images/youtube.png"></p>
 	</center>
 	    <b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
 </div>

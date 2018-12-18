@@ -94,16 +94,16 @@ ul.pagination a.current {
 	<div id="manu">
 	<ul>
 	<li><a href="admin.php" >HOME</a></li>
-	<li><a style="background:#1f447f; color:#fff;" href="product.php" >PRODUCT</a></li>
-	<li><a href="order.php" >ORDER</a></li>
-	<li><a href="../login/logout.php?logout=true" >SIGN OUT</a></li>
+	<li><a style="background:#5DBCD2; color:#fff;" href="product.php" >PRODUTOS</a></li>
+	<li><a href="order.php" >PEDIDO</a></li>
+	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
 	</ul>
 	</div>
 
 </center>
 <br>
 <div id="content">
-	<h2><a class="button" href="add-product.php"> Add Product</a> Admin Access Only [Product Page] </h2>
+	<h2><a class="button" href="add-product.php"> Adicionar Produto</a> Admin Access Only [Product Page] </h2>
 
 <center>
 
@@ -112,13 +112,13 @@ ul.pagination a.current {
         <thead>
         <tr>
         <th>ID</th>
-        <th>Image</th>
-        <th>Name</th>
-				<th>Description</th>
-				<th>Price</th>
-		    <th>Date</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Imagem</th>
+        <th>Nome</th>
+				<th>Descrição</th>
+				<th>Preço</th>
+		    <th>Data</th>
+        <th>Editar</th>
+        <th>Deletar</th>
         </tr>
         </thead>
         <tbody>
@@ -136,10 +136,10 @@ ul.pagination a.current {
 
 			<td align="center">
 			<a   href="pedit.php?pid=<?php //echo $row['pid']; ?>" title="Edit">
-			<img src="../img/edit.png" width="20px" />
+			<img src="../images/edit.png" width="20px" />
             </a></td>
 			<td align="center"><a   href="delete.php?pid=<?php //echo $row['pid']; ?>" title="Delete">
-			<img src="../img/delete.png" width="20px" />
+			<img src="../images/delete.png" width="20px" />
             </a></td>
 			</tr>
 
@@ -149,18 +149,16 @@ ul.pagination a.current {
 				<br>
 
 				<?php
-
-
 								// displaying paginaiton.
 							//	echo pagination($statement,$per_page,$page,$url='?');
-								?>
+				?>
 </center>
 
 </div>
 <div id="footer3">
 	<center>
 	      <p> Acesse Nossas Mídias Sociais </p>
-	      <p><img src="images/facebook.png"> <img src="images/twitter.png">  <img src="images/youtube.png"></p>
+	      <p><img src="../images/facebook.png"> <img src="../images/twitter.png">  <img src="../images/youtube.png"></p>
 	</center>
 	    <b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
 </div>

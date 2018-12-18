@@ -74,24 +74,21 @@ table.altrowstable td {
 
 <body>
 
-
-
-	<div id="main3">
-
-		<div id="header"><img src="../images/logo.png"></div>
+<div id="main3">
+<div id="header"><img src="../images/logo.png"></div>
 <center>
 	<div id="manu">
 	<ul>
 	<li><a href="admin.php" >HOME</a></li>
-	<li><a href="product.php" >PRODUCT</a></li>
-	<li><a href="order.php" >ORDER</a></li>
-	<li><a href="../login/logout.php?logout=true" >SIGN OUT</a></li>
+	<li><a href="product.php" >PRODUTOS</a></li>
+	<li><a href="order.php" >PEDIDO</a></li>
+	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
 	</ul>
 	</div>
 </center>
 <div id="content">
 
-<h1><button class="button">Welcome <?php //echo $userRow['user_name']; ?></button></h1>
+<h1><button class="button">Bem-vindo <?php //echo $userRow['user_name']; ?></button></h1>
 
 <p> In this web app admin can access rich features like below. </p>
 <p>1. Add Edit Delete Products</p>
@@ -107,7 +104,7 @@ table.altrowstable td {
 <div id="footer3">
 	<center>
 	      <p> Acesse Nossas Mídias Sociais </p>
-	      <p><img src="images/facebook.png"> <img src="images/twitter.png">  <img src="images/youtube.png"></p>
+	      <p><img src="../images/facebook.png"> <img src="../images/twitter.png">  <img src="../images/youtube.png"></p>
 	</center>
 	    <b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
 </div>

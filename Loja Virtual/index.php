@@ -5,7 +5,7 @@
 *   Universidade do Estado do Amazonas
 *   Engenharia de Computação
 *   Projeto de Loja Virtual em PHP (Protótipo)
-*   3ª Versão
+*   4ª Versão
 -->
 
 <html xmlns="http://www.w3.org/">
@@ -82,7 +82,7 @@ ul.pagination a.current {
               <span class="more"><a href="detail.php?pid='.$pid.'" >Mais Detalhes</a></span>
               <span class="order"><a href="add-order.php?pid='.$pid.'" >Peça Agora</a></span>
             </div>';
-    } // While loop End
+    }
     //**********************************************
   ?>
 
@@ -93,7 +93,6 @@ ul.pagination a.current {
   <br>
   <center>
     <?php
-      // displaying paginaiton.
       echo pagination($statement, $per_page, $page, $url='?');
     ?>
   </center>
