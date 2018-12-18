@@ -54,20 +54,51 @@ ul.pagination a.current {
 
 <div id="content">
   <?php
-  require_once 'conexao/dbconfig.php';
+    require_once 'conexao/dbconfig.php';
 
-  include_once('conexao/conexaox.php');
-  include_once('funcao/funcaox.php');
+    include_once('conexao/conexaox.php');
+    include_once('funcao/funcaox.php');
 
+    $page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
+    if ($page <= 0) $page = 1;
+    $per_page = 6; // Set how many records do you want to display per page.
+    $startpoint = ($page * $per_page) - $per_page;
+    $statement = "`product` ORDER BY `pid` ASC";
 
-  //**********************************************
-    echo "No Record";
-  //**********************************************
+    //**********************************************
+    $stmt = $db_con->prepare("SELECT * FROM product ORDER BY pid DESC  LIMIT {$startpoint} , {$per_page} ");
+    $stmt->execute();
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+    {
+
+      $img = $row['img'];
+      $pid = $row['pid'];
+      $pr = $row['pr'];
+
+      echo '
+            <div class="item">
+              <button class="button">Preço '.$pr.' </button><br>
+              <span><img src="'.$img.'"><span><br>
+              <span class="more"><a href="detail.php?pid='.$pid.'" >Mais Detalhes</a></span>
+              <span class="order"><a href="add-order.php?pid='.$pid.'" >Peça Agora</a></span>
+            </div>';
+    } // While loop End
+    //**********************************************
   ?>
+
   <br>
   <br>
 </div>
-
+<div id="nav">
+  <br>
+  <center>
+    <?php
+      // displaying paginaiton.
+      echo pagination($statement, $per_page, $page, $url='?');
+    ?>
+  </center>
+  <br>
+</div>
 
 <div id="footer">
 <center>

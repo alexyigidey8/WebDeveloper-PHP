@@ -12,7 +12,7 @@ atendimento
 <div id="header"><img src="images/logo.png"></div>
 <div id="manu">
   <ul>
-    <li><a style="background:#1f447f; color:#fff;" href="index.php">HOME</a></li>
+    <li><a style="background:#5DBCD2; color:#fff;" href="index.php">HOME</a></li>
     <li><a href="pedido.php">MEUS PEDIDOS</a></li>
     <li><a href="atendimento.php">ATENDIMENTO</a></li>
     <li><a href="login/login.php">ENTRAR</a></li>
@@ -20,12 +20,36 @@ atendimento
 </div>
 <div id="content">
   <?php
-  require_once 'conexao/dbconfig.php';
+    require_once 'conexao/dbconfig.php';
 
-  //**********************************************
-    echo "Nenhum Detalhe";
-  //**********************************************
+    //**********************************************
+    $pid = $_GET['pid'];
 
+  	$stmt = $db_con->prepare("SELECT * FROM product WHERE pid = $pid");
+  	$stmt->execute();
+    $row=$stmt->fetch(PDO::FETCH_ASSOC);
+
+    $img = $row['img'];
+    $name =  $row['name'];
+    $des = $row['des'];
+    $pr = $row['pr'];
+    $cdate =  $row['cdate'];
+
+
+    echo '
+          <div class="item1">
+            <span><img src="'.$img.'"></span>
+          </div>';
+
+    echo '
+          <div class="item1">
+            <button class="button2"> Preço '.$pr.'</button><br>
+            <h2>'.$name.'</h2>
+            <span><b>Descrição </b><br>'.$des.'<span><br><br>
+            <b><b>Data de Publicação </b>'.$cdate.'</b><br>
+            <button class="button2"> <a href="add-order.php?pid='.$pid.'" > Pedir Agora</a> </button>
+          </div>';
+    //**********************************************
   ?>
 </div>
 </div>
