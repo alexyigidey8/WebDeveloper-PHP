@@ -5,7 +5,7 @@
 *   Universidade do Estado do Amazonas
 *   Engenharia de Computação
 *   Projeto de Loja Virtual em PHP (Protótipo)
-*   2ª Versão
+*   3ª Versão
 -->
 
 <html xmlns="http://www.w3.org/">
