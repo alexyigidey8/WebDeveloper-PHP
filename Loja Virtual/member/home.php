@@ -1,3 +1,26 @@
+<?php
+
+	require_once("../session.php");
+
+	require_once("../class.user.php");
+	$auth_user = new USER();
+
+	$user_id = $_SESSION['user_session'];
+
+	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
+	$stmt->execute(array(":user_id"=>$user_id));
+
+	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+  $uid = $userRow['user_id'];
+
+	if(!$_SESSION['user_session'])
+	{
+		header("location: ../login/denied.php");
+	}
+
+?>
+
+
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/">
 <head>
@@ -88,7 +111,7 @@ ul.pagination a.current {
 <div id="header"><img src="../images/logo.png"></div>
 <div id="manu">
 	<ul>
-		<li><a href="home.php" style="background:#1f447f; color:#fff;" >HOME</a></li>
+		<li><a href="home.php" style="background:#5DBCD2; color:#fff;" >HOME</a></li>
 		<li><a  href="../index.php" >ORDER NOW</a></li>
 		<li><a href="../login/logout.php?logout=true" >SIGN OUT</a></li>
 	</ul>
@@ -113,17 +136,39 @@ ul.pagination a.current {
       </thead>
       <tbody>
 				<?php
-				//require_once '../connection/dbconfig.php';
+					require_once '../conexao/dbconfig.php';
 
-				//**********************************************
-			    echo "Nenhum detalhe de pedidos";
-			  //**********************************************
+					$stmt = $db_con->prepare("SELECT * FROM ordrs WHERE uid = $uid ORDER BY myid DESC");
+					$stmt->execute();
+
+					while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+					{
 				?>
+						<tr>
+							<td><?php echo $row['myid']; ?></td>
+							<td><img with="50" height="50" src="../<?php echo $row['img']; ?>"></td>
+							<td><?php echo $row['name']; ?></td>
+							<td><?php echo $row['mobile']; ?></td>
+							<td><?php echo $row['email']; ?></td>
+							<td><?php echo $row['addr']; ?></td>
+							<td><?php echo $row['ordr']; ?></td>
+							<td><?php echo $row['cdate']; ?></td>
+							<td><?php echo $row['sts']; ?></td>
+						</tr>
+				<?php
+					}
+				?>
+			</tbody>
+		</table>
+	</center>
+	<br>
+	<?php
+	?>
 
 <div id="footer3">
 	<center>
 		<p> Acesse Nossas Mídias Sociais </p>
-		<p><img src="images/facebook.png"> <img src="images/twitter.png">  <img src="images/youtube.png"></p>
+		<p><img src="../images/facebook.png"> <img src="../images/twitter.png">  <img src="../images/youtube.png"></p>
 	</center>
 		<b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
 </div>

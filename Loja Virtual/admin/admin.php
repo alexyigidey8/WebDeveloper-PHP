@@ -1,15 +1,34 @@
 <?php
 
-	//require_once("../session.php");
+	require_once("../session.php");
 
-	// require_once("../class.user.php");
-	//**********************************************
-		echo "No Admin to Display";
-	//**********************************************
+	require_once("../class.user.php");
+	$auth_user = new USER();
 
 
+	$user_id = $_SESSION['user_session'];
+
+	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
+	$stmt->execute(array(":user_id"=>$user_id));
+
+	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+  $id = $userRow['user_id'];
+	if ($id == 1)
+	{
+		echo "Você é Administrador";
+	}
+	else
+	{
+		header("location: ../member/home.php");
+	}
+
+	if(!$_SESSION['user_session'])
+	{
+		header("location: ../login/denied.php");
+	}
 
 ?>
+
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/">
 <head>
