@@ -15,7 +15,7 @@
   $id = $userRow['user_id'];
 	if ($id == 1)
 	{
-		echo "Você é Administrador";
+		//echo "Você é Administrador";
 	}
 	else
 	{
@@ -101,6 +101,7 @@ table.altrowstable td {
 	<li><a href="admin.php" >HOME</a></li>
 	<li><a href="product.php" >PRODUTOS</a></li>
 	<li><a href="order.php" >PEDIDO</a></li>
+	<li><a href="message.php" >MENSAGEM</a></li>
 	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
 	</ul>
 	</div>

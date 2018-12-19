@@ -13,15 +13,14 @@
 
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
   $id = $userRow['user_id'];
-	if ($id == 1){
-	}
-
-	else{
+	if ($id == 1){}
+	else
+	{
 		header("location: ../member/home.php");
 	}
 
-	if(!$_SESSION['user_session']){
-
+	if(!$_SESSION['user_session'])
+	{
 		header("location: ../login/denied.php");
 	}
 
@@ -36,21 +35,20 @@
 </head>
 <body>
 
+<?php
 
-
-	<?php
 	require_once '../conexao/dbconfig.php';
 
 	$stmt = $db_con->prepare("SELECT * FROM product ORDER BY pid DESC LIMIT 1");
 	$stmt->execute();
-$row=$stmt->fetch(PDO::FETCH_ASSOC);
+	$row=$stmt->fetch(PDO::FETCH_ASSOC);
 
-$lid = $row['pid'];
+	$lid = $row['pid'];
 
-$target_dir = "../images/";
-$new = $lid.".jpg";
-$target_file = $target_dir . $new;
-move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+	$target_dir = "../images/";
+	$new = $lid.".jpg";
+	$target_file = $target_dir . $new;
+	move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
 ?>
 
@@ -58,7 +56,7 @@ move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 	<h1><font color='Green'>Order Submitted</font></h1>
 
 <?php
-	require_once '../connection/dbconfig.php';
+	require_once '../conexao/dbconfig.php';
 
 		$a = $_POST['a'];
 		$b = $_POST['b'];
@@ -71,7 +69,7 @@ move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 			{
 
 				$name = $_POST['name'];
-				$mg = "img/".$new;
+				$mg = "images/".$new;
 				$ds = $_POST['des'];
 				$pr = $_POST['pr'];
 				$cdate = $_POST['cdate'];
@@ -89,10 +87,10 @@ move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
 					if($stmt->execute())
 					{
-						echo "<p>Your Product Successfully Added</p>";
+						echo "<p>Seu Produto foi Salvo com Sucesso</p>";
 					}
 					else{
-						echo "Query Problem";
+						echo "Problemas de Consulta";
 					}
 				}
 				catch(PDOException $e)
@@ -109,11 +107,11 @@ move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 		}
 		else
 		{
-			echo '<p> Wrong Answer! <br/> Please calculate the number again and try  to give correct answer. </p>';
+			echo '<p> Resposta Errada! <br/> Por favor calcule novamente. </p>';
 
 		} ?>
 	</b></p>
-	<p><a href="product.php" ><button class="button" >Back</button</a></p>
+	<p><a href="product.php" ><button class="button" >Voltar</button</a></p>
 </div>
 
 </body>

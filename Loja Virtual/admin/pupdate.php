@@ -5,7 +5,6 @@
 	require_once("../class.user.php");
 	$auth_user = new USER();
 
-
 	$user_id = $_SESSION['user_session'];
 
 	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
@@ -13,15 +12,14 @@
 
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
   $id = $userRow['user_id'];
-	if ($id == 1){
-	}
-
-	else{
+	if ($id == 1){}
+	else
+	{
 		header("location: ../member/home.php");
 	}
 
-	if(!$_SESSION['user_session']){
-
+	if(!$_SESSION['user_session'])
+	{
 		header("location: ../login/denied.php");
 	}
 
@@ -29,25 +27,22 @@
 
 
 <?php
-require_once '../conexao/dbconfig.php';
 
+	require_once '../conexao/dbconfig.php';
 
 	if(isset($_POST['name']))
 	{
 
-   $pid = $_POST['pid'];
+  	$pid = $_POST['pid'];
 		$name = $_POST['name'];
-
 		$des = $_POST['des'];
 		$pr =  $_POST['pr'];
 		$cdate = $_POST['cdate'];
-
-
-	$mg = $_POST['img'];
+		$mg = $_POST['img'];
 
 		$stmt = $db_con->prepare("UPDATE product SET img=:mg, name=:en,
-			 des=:ds, pr=:pr,  cdate=:cd
- WHERE pid=:id");
+			 												des=:ds, pr=:pr,  cdate=:cd
+ 															WHERE pid=:id");
 
  	  $stmt->bindParam(":mg", $mg);
 		$stmt->bindParam(":en", $name);
@@ -58,9 +53,10 @@ require_once '../conexao/dbconfig.php';
 
 		if($stmt->execute())
 		{
-			echo "<p>Order Successfully updated<p>";
+			//echo "<p>Product Successfully updated<p>";
 		}
-		else{
+		else
+		{
 			echo "Query Problem";
 		}
 	}
@@ -74,7 +70,6 @@ require_once '../conexao/dbconfig.php';
 	require_once("../class.user.php");
 	$auth_user = new USER();
 
-
 	$user_id = $_SESSION['user_session'];
 
 	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
@@ -84,18 +79,21 @@ require_once '../conexao/dbconfig.php';
 
 ?>
 
+
+
+
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Accesso Negado</title>
+<title>Loja Virtual</title>
 <link rel="stylesheet" href="../style/style.css" type="text/css"  />
 </head>
 <body>
 <div id="main2">
-	<h1><font color='green'>Congratulation!</font></h1>
-	<p><b>Order Successfully Updated.</b></p>
-	<p><a href="product.php" ><button class="button" >Back</button</a></p>
+	<h1><font color='green'>Parabéns!</font></h1>
+	<p><b>Produto atualizado com Sucesso.</b></p>
+	<p><a href="product.php" ><button class="button" >Voltar</button</a></p>
 </div>
 
 </body>

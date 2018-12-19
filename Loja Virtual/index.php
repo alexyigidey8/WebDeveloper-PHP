@@ -5,7 +5,7 @@
 *   Universidade do Estado do Amazonas
 *   Engenharia de Computação
 *   Projeto de Loja Virtual em PHP (Protótipo)
-*   5ª Versão
+*   6ª Versão
 -->
 
 <html xmlns="http://www.w3.org/">
@@ -14,15 +14,18 @@
 <title>Loja Virtual</title>
 <link rel="stylesheet" href="style/style1.css" type="text/css"  />
 <style>
-ul.pagination {
+ul.pagination
+{
     text-align:center;
     color:#5DBCD2;
 }
-ul.pagination li {
+ul.pagination li
+{
     display:inline;
     padding:0 3px;
 }
-ul.pagination a {
+ul.pagination a
+{
     color:#5DBCD2;
     display:inline-block;
     padding:5px 10px;
@@ -30,16 +33,15 @@ ul.pagination a {
     text-decoration:none;
 }
 ul.pagination a:hover,
-ul.pagination a.current {
+ul.pagination a.current
+{
     background:#5DBCD2;
     color:#fff;
 }
-
 </style>
 
 </head>
 <body>
-
 <div id="main2">
 <div id="header"><img src="images/logo.png"></div>
 <div id="manu">

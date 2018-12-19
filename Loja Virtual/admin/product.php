@@ -1,3 +1,30 @@
+<?php
+
+	require_once("../session.php");
+
+	require_once("../class.user.php");
+	$auth_user = new USER();
+
+	$user_id = $_SESSION['user_session'];
+
+	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
+	$stmt->execute(array(":user_id"=>$user_id));
+
+	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+  $id = $userRow['user_id'];
+	if ($id == 1){}
+	else
+	{
+		header("location: ../member/home.php");
+	}
+
+	if(!$_SESSION['user_session'])
+	{
+		header("location: ../login/denied.php");
+	}
+
+?>
+
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/">
 <head>
@@ -55,22 +82,22 @@ table.altrowstable td {
 
 ul.pagination {
     text-align:center;
-    color:#1f447f;
+    color:#5DBCD2;
 }
 ul.pagination li {
     display:inline;
     padding:0 3px;
 }
 ul.pagination a {
-    color:#1f447f;
+    color:#5DBCD2;
     display:inline-block;
     padding:5px 10px;
-    border:1px solid #1f447f;
+    border:1px solid #5DBCD2;
     text-decoration:none;
 }
 ul.pagination a:hover,
 ul.pagination a.current {
-    background:#1f447f;
+    background:#5DBCD2;
     color:#fff;
 }
 
@@ -79,29 +106,22 @@ ul.pagination a.current {
 
 <!-- Table goes in the document BODY -->
 
-
-
 </head>
 
 <body>
-
-
-
-	<div id="main3">
-
-		<div id="header"><img src="../images/logo.png"></div>
-<center>
-	<div id="manu">
-	<ul>
-	<li><a href="admin.php" >HOME</a></li>
-	<li><a style="background:#5DBCD2; color:#fff;" href="product.php" >PRODUTOS</a></li>
-	<li><a href="order.php" >PEDIDO</a></li>
-	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
-	</ul>
-	</div>
-
-</center>
-<br>
+<div id="main3">
+<div id="header"><a href="../index.php"><img src="../images/logo.png"></div>
+	<center>
+		<div id="manu">
+			<ul>
+				<li><a href="admin.php" >HOME</a></li>
+				<li><a style="background:#5DBCD2; color:#fff;" href="product.php" >PRODUTOS</a></li>
+				<li><a href="order.php" >PEDIDO</a></li>
+				<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
+			</ul>
+		</div>
+	</center>
+	<br>
 <div id="content">
 	<h2><a class="button" href="add-product.php"> Adicionar Produto</a> Admin Access Only [Product Page] </h2>
 
@@ -123,35 +143,64 @@ ul.pagination a.current {
         </thead>
         <tbody>
 					<?php
+						require_once '../conexao/dbconfig.php';
 
-				?>
+						include_once('../conexao/conexaox.php');
+						include_once('../funcao/funcaox.php');
+
+						$page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
+						if ($page <= 0) $page = 1;
+
+						$per_page = 5; // Set how many records do you want to display per page.
+						$startpoint = ($page * $per_page) - $per_page;
+						$statement = "`product` ORDER BY `pid` ASC"; // Change `records` according to your table name.
+						$results = mysqli_query($conDB,"SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}");
+
+						if (mysqli_num_rows($results) != 0)
+						{
+							// displaying records.
+							while($row = mysqli_fetch_array($results))
+							{
+
+					?>
 			<tr>
-			<td><?php //echo $row['pid']; ?></td>
+			<td><?php echo $row['pid']; ?></td>
 
-			<td><img with="50" height="50" src="../<?php // $row['img']; ?>"></td>
-			<td><?php //echo $row['name']; ?></td>
-			<td><?php //echo $row['des']; ?></td>
-			<td><?php //echo $row['pr']; ?></td>
-			<td><?php //echo $row['cdate']; ?></td>
+			<td><img with="80" height="80" src="../<?php echo $row['img']; ?>"></td>
+			<td><?php echo $row['name']; ?></td>
+			<td><?php echo $row['des']; ?></td>
+			<td><?php echo $row['pr']; ?></td>
+			<td><?php echo $row['cdate']; ?></td>
 
 			<td align="center">
-			<a   href="pedit.php?pid=<?php //echo $row['pid']; ?>" title="Edit">
-			<img src="../images/edit.png" width="20px" />
+			<a   href="pedit.php?pid=<?php echo $row['pid']; ?>" title="Edit">
+			<img src="../images/edit.png" width="40px" />
             </a></td>
-			<td align="center"><a   href="delete.php?pid=<?php //echo $row['pid']; ?>" title="Delete">
-			<img src="../images/delete.png" width="20px" />
+			<td align="center"><a   href="delete.php?pid=<?php echo $row['pid']; ?>" title="Delete">
+			<img src="../images/delete.png" width="40px" />
             </a></td>
 			</tr>
-
+				<?php
+							// displaying paginaiton.
+							}
+							//echo pagination($statement,$per_page,$page,$url='?');
+				?>
 
         </tbody>
         </table>
 				<br>
 
 				<?php
-								// displaying paginaiton.
-							//	echo pagination($statement,$per_page,$page,$url='?');
+
+					}
+					else
+					{
+						echo "No recond here";
+					}
+					// displaying paginaiton.
+					echo pagination($statement,$per_page,$page,$url='?');
 				?>
+
 </center>
 
 </div>

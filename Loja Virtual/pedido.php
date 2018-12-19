@@ -97,12 +97,12 @@
           </div>';
 
     echo '<div class="item1">
-            <button class="button"> Preço '.$pr.'</button><br>
-            <span><b>Course No</b><br>'.$myid.'<span><br>
+            <button class="button2"> Preço '.$pr.'</button><br>
+            <span><b>ID</b><br>'.$myid.'<span><br>
             <span><b>Nome</b><br>'.$name.'<span><br>
-            <span><b>Course</b><br>'.$ordr.'<span><br>
-            <b><b>Order Date </b>'.$cdate.'</b><br>
-            <button class="button"> '.$sts.' </button>
+            <span><b>Pedido</b><br>'.$ordr.'<span><br>
+            <b><b>Data </b>'.$cdate.'</b><br>
+            <button class="button2"> '.$sts.' </button>
           </div>';
   }
   //**********************************************

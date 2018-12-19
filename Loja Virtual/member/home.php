@@ -25,7 +25,7 @@
 <html xmlns="http://www.w3.org/">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Insert, Update, Delete using jQuery, PHP and MySQL</title>
+<title>Loja Virtual</title>
 <link href="../style/style1.css" rel="stylesheet" type="text/css">
 
 <!-- Javascript goes in the document HEAD -->
@@ -86,20 +86,17 @@ ul.pagination li {
     padding:0 3px;
 }
 ul.pagination a {
-    color:#1f447f;
+    color:#5DBCD2;
     display:inline-block;
     padding:5px 10px;
-    border:1px solid #1f447f;
+    border:1px solid #5DBCD2;
     text-decoration:none;
 }
 ul.pagination a:hover,
 ul.pagination a.current {
-    background:#1f447f;
+    background:#5DBCD2;
     color:#fff;
 }
-
-
-
 </style>
 
 <!-- Table goes in the document BODY -->
@@ -112,25 +109,25 @@ ul.pagination a.current {
 <div id="manu">
 	<ul>
 		<li><a href="home.php" style="background:#5DBCD2; color:#fff;" >HOME</a></li>
-		<li><a  href="../index.php" >ORDER NOW</a></li>
-		<li><a href="../login/logout.php?logout=true" >SIGN OUT</a></li>
+		<li><a  href="../index.php" >COMPRE MAIS</a></li>
+		<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
 	</ul>
 </div>
 	<br>
 <div id="content">
-	<h2><a class="button" href="../index.php">PLACE ORDER</a>  [Order Detail] </h2>
+	<h2><a class="button" href="../index.php">Solicitações</a>  [Detalhe dos Pedidos] </h2>
 	<center>
 		<table class="altrowstable" id="alternatecolor">
     	<thead>
       	<tr>
 	        <th>ID</th>
-	        <th>Image</th>
-	        <th>Name</th>
-					<th>Mobile</th>
+	        <th>Imagem</th>
+	        <th>Nome</th>
+					<th>Telefone</th>
 					<th>Email</th>
-					<th>Address</th>
-					<th>Order</th>
-			    <th>Date</th>
+					<th>Endereço</th>
+					<th>Pedido</th>
+			    <th>Data</th>
 					<th>Status</th>
         </tr>
       </thead>

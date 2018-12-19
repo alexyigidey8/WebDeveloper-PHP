@@ -1,8 +1,35 @@
+<?php
+
+	require_once("../session.php");
+
+	require_once("../class.user.php");
+	$auth_user = new USER();
+
+	$user_id = $_SESSION['user_session'];
+
+	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
+	$stmt->execute(array(":user_id"=>$user_id));
+
+	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+  $id = $userRow['user_id'];
+	if ($id == 1){}
+	else
+	{
+		header("location: ../member/home.php");
+	}
+
+	if(!$_SESSION['user_session'])
+	{
+		header("location: ../login/denied.php");
+	}
+
+?>
+
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Insert, Update, Delete using jQuery, PHP and MySQL</title>
+<title>Loja Virtual</title>
 <link href="../style/style1.css" rel="stylesheet" type="text/css">
 
 <!-- Javascript goes in the document HEAD -->
@@ -56,26 +83,24 @@ table.altrowstable td {
 
 ul.pagination {
     text-align:center;
-    color:#1f447f;
+    color:#5DBCD2;
 }
 ul.pagination li {
     display:inline;
     padding:0 3px;
 }
 ul.pagination a {
-    color:#1f447f;
+    color:#5DBCD2;
     display:inline-block;
     padding:5px 10px;
-    border:1px solid #1f447f;
+    border:1px solid #5DBCD2;
     text-decoration:none;
 }
 ul.pagination a:hover,
 ul.pagination a.current {
-    background:#1f447f;
+    background:#5DBCD2;
     color:#fff;
 }
-
-
 
 </style>
 
@@ -115,35 +140,61 @@ ul.pagination a.current {
       <tbody>
 			<?php
 
-			?>
+					require_once '../conexao/dbconfig.php';
+
+					include_once('../conexao/conexaox.php');
+					include_once('../funcao/funcaox.php');
+
+					$page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
+					if ($page <= 0) $page = 1;
+
+					$per_page = 5; // Set how many records do you want to display per page.
+					$startpoint = ($page * $per_page) - $per_page;
+					$statement = "`ordrs` ORDER BY `myid` ASC"; // Change `records` according to your table name.
+					$results = mysqli_query($conDB,"SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}");
+
+					if (mysqli_num_rows($results) != 0)
+					{
+						// displaying records.
+						while($row = mysqli_fetch_array($results))
+						{
+				?>
 			<tr>
-				<td><?php //echo $row['myid']; ?></td>
-				<td><img with="50" height="50" src="../<?php //echo $row['img']; ?>"></td>
-				<td><?php //echo $row['name']; ?></td>
-				<td><?php //echo $row['mobile']; ?></td>
-				<td><?php //echo $row['email']; ?></td>
-				<td><?php //echo $row['addr']; ?></td>
-				<td><?php ///echo $row['ordr']; ?></td>
-				<td><?php //echo $row['cdate']; ?></td>
-				<td><?php //echo $row['sts']; ?></td>
+				<td><?php echo $row['myid']; ?></td>
+				<td><img with="80" height="80" src="../<?php echo $row['img']; ?>"></td>
+				<td><?php echo $row['name']; ?></td>
+				<td><?php echo $row['mobile']; ?></td>
+				<td><?php echo $row['email']; ?></td>
+				<td><?php echo $row['addr']; ?></td>
+				<td><?php echo $row['ordr']; ?></td>
+				<td><?php echo $row['cdate']; ?></td>
+				<td><?php echo $row['sts']; ?></td>
 				<td align="center">
-					<a   href="edit.php?myid=<?php //echo $row['myid']; ?>" title="Edit">
-					<img src="../images/edit.png" width="20px" />
+					<a   href="edit.php?myid=<?php echo $row['myid']; ?>" title="Edit">
+					<img src="../images/edit.png" width="40px" />
           </a>
 				</td>
 			<td align="center">
-				<a   href="delete.php?myid=<?php //echo $row['myid']; ?>" title="Delete">
-				<img src="../images/delete.png" width="20px" />
+				<a   href="delete.php?myid=<?php echo $row['myid']; ?>" title="Delete">
+				<img src="../images/delete.png" width="40px" />
         </a>
 			</td>
 			</tr>
+			<?php
+						}
+			?>
       </tbody>
     </table>
 	</center>
 	<br>
 		<?php
-			// displaying paginaiton.
-			//	echo pagination($statement,$per_page,$page,$url='?');
+					}
+					else
+					{
+						echo "no record";
+					}
+					// displaying paginaiton.
+					echo pagination($statement,$per_page,$page,$url='?');
 			?>
 
 
