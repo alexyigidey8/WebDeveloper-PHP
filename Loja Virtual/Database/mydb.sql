@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 19, 2018 at 11:03 PM
--- Server version: 5.7.23
--- PHP Version: 7.2.10
+-- Generation Time: 20-Dez-2018 às 20:49
+-- Versão do servidor: 5.7.23
+-- versão do PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Estrutura da tabela `message`
 --
 
 DROP TABLE IF EXISTS `message`;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `message` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `message`
+-- Extraindo dados da tabela `message`
 --
 
 INSERT INTO `message` (`mid`, `name`, `mobile`, `email`, `mssg`, `cdate`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `message` (`mid`, `name`, `mobile`, `email`, `mssg`, `cdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordrs`
+-- Estrutura da tabela `ordrs`
 --
 
 DROP TABLE IF EXISTS `ordrs`;
@@ -66,10 +66,10 @@ CREATE TABLE IF NOT EXISTS `ordrs` (
   `sts` varchar(20) NOT NULL,
   `cdate` date NOT NULL,
   PRIMARY KEY (`myid`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ordrs`
+-- Extraindo dados da tabela `ordrs`
 --
 
 INSERT INTO `ordrs` (`myid`, `uid`, `img`, `name`, `mobile`, `email`, `addr`, `ordr`, `pr`, `sts`, `cdate`) VALUES
@@ -77,6 +77,7 @@ INSERT INTO `ordrs` (`myid`, `uid`, `img`, `name`, `mobile`, `email`, `addr`, `o
 (27, 3, 'images/11.jpg', 'dd done', '+64143434', 'dd@gmail.com', 'dd new order Taxes America', 'CSS ', '$200', 'Despachado', '2017-10-16'),
 (26, 2, 'images/11.jpg', 'David ', '+374341', 'david@gmail.com', 'My new NY Address David America', 'CSS ', '$200', 'Despachado', '2017-10-16'),
 (42, 4, 'images/23.jpg', 'thelsandro', '', 'thelsandro.antunes@gmail.com', '', 'Advanced', 'R$500', 'Pending', '2018-12-19'),
+(43, 6, 'images/43.jpg', 'maria', '', 'maria@hotmail.com', '', 'DragÃ£os de Ã‰ter', 'R$ 37', 'Pending', '2018-12-20'),
 (31, 2, 'images/11.jpg', 'rr', 'rr', 'rr', 'rrr', 'CSS ', '$200', 'Pendente', '2017-10-19'),
 (34, 2, 'images/16.jpg', 'jj', '+54135441', 'jj@example.com', 'fdfdsffs', 'Blogger', '$200', 'Pendente', '2017-10-19'),
 (35, 1, 'images/15.jpg', 'admin', '+55555555', 'admin@example.com', 'customerbehalf link access ', 'PHP ', '$400', 'Dispatched', '2017-10-19'),
@@ -85,12 +86,18 @@ INSERT INTO `ordrs` (`myid`, `uid`, `img`, `name`, `mobile`, `email`, `addr`, `o
 (38, 4, 'images/25.jpg', 'thelsandro', '', 'thelsandro.antunes@gmail.com', '', 'Ad HTML ', 'R$300', 'Pendente', '2018-12-18'),
 (39, 4, 'images/23.jpg', 'thelsandro', '', 'thelsandro.antunes@gmail.com', '', 'Advanced', 'R$500', 'Despachado', '2018-12-18'),
 (40, 4, 'images/07.jpg', 'thelsandro', '+559839483989', 'thelsandro.antunes@gmail.com', '', 'O Rei do Inverno', 'R$43', 'Cancelled', '2018-12-19'),
-(41, 4, 'images/04.jpg', 'thelsandro', '+551187871212', 'thelsandro.antunes@gmail.com', 'TARUMÃƒ', 'O Jardim das AfliÃ§Ãµes', 'R$89', 'Pending', '2018-12-19');
+(41, 4, 'images/04.jpg', 'thelsandro', '+551187871212', 'thelsandro.antunes@gmail.com', 'TARUMÃƒ', 'O Jardim das AfliÃ§Ãµes', 'R$89', 'Pending', '2018-12-19'),
+(44, 6, 'images/06.jpg', 'maria', '', 'maria@hotmail.com', '', 'O Mï¿½nimo que vocï¿½ precisa saber para nï¿½o ser um Idiota', 'R$115', 'Pending', '2018-12-20'),
+(45, 5, 'images/05.jpg', 'santos', '', 'santos@hotmail.com', '', 'O Imbecil Coletivo', 'R$85', 'Pending', '2018-12-20'),
+(46, 5, 'images/15.jpg', 'santos', '', 'santos@hotmail.com', '', 'PHP ', 'R$210', 'Pending', '2018-12-20'),
+(47, 5, 'images/04.jpg', 'santos', '', 'santos@hotmail.com', '', 'O Jardim das AfliÃ§Ãµes', 'R$89', 'Pending', '2018-12-20'),
+(48, 5, 'images/43.jpg', 'santos', '', 'santos@hotmail.com', '', 'DragÃ£os de Ã‰ter', 'R$ 37', 'Pending', '2018-12-20'),
+(49, 5, 'images/08.jpg', 'santos', '', 'santos@hotmail.com', '', 'O Inimigo de Deus', 'R$49', 'Pending', '2018-12-20');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Estrutura da tabela `product`
 --
 
 DROP TABLE IF EXISTS `product`;
@@ -105,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `product`
+-- Extraindo dados da tabela `product`
 --
 
 INSERT INTO `product` (`pid`, `img`, `name`, `des`, `pr`, `cdate`) VALUES
@@ -131,7 +138,7 @@ INSERT INTO `product` (`pid`, `img`, `name`, `des`, `pr`, `cdate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estrutura da tabela `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -142,15 +149,27 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_pass` varchar(255) NOT NULL,
   `joining_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_pass`, `joining_date`) VALUES
-(1, 'admin', 'admin@example.com', '$2y$10$ujej4UpRJsbf3ETJRrqg8uQ7pBv4HX5w77dho8cD9t8zVK/zt75Na', '2017-10-15 11:33:28'),
-(4, 'thelsandro', 'thelsandro.antunes@gmail.com', '$2y$10$oRC4FqM9vNHQliWZuRQGBuMpSh8bzvmMysncSPK8Gqo5cfY2rem9W', '2018-12-17 19:23:34');
+(1, 'admin', 'admin@example.com', '$2y$10$ujej4UpRJsbf3ETJRrqg8uQ7pBv4HX5w77dho8cD9t8zVK/zt75Na', '2018-12-20 14:34:28'),
+(6, 'maria', 'maria@hotmail.com', '$2y$10$VNd5Q6O3KhjGdkGoNBs6vu0VunmqHqe14Kl2TKig9b9VrFclTquc.', '2018-12-20 15:40:10'),
+(5, 'santos', 'santos@hotmail.com', '$2y$10$cmad41OsbnKNO6IxAMG1Ie7wiyvZg2RIUGR8IJjlEP.1A0/NB.aOC', '2018-12-20 14:33:00'),
+(4, 'thelsandro', 'thelsandro.antunes@gmail.com', '$2y$10$oRC4FqM9vNHQliWZuRQGBuMpSh8bzvmMysncSPK8Gqo5cfY2rem9W', '2018-12-17 19:23:34'),
+(7, 'mateus', 'mateus@exemplo.com', '$2y$10$C6BWcpLMMjbC2uvSCij51uAvLf4fMEuvJ5kTlQI/Njs1bGau29F0i', '2018-12-20 15:44:56'),
+(8, 'telsson', 'tellson@gmail.com', '$2y$10$c1/c9yI6lBEEvzPFEqfSJ.MXY6935KVLoMMFedO44BUsIqJ2RzMbm', '2018-12-20 16:07:32'),
+(9, 'teste', 'teste@exemplo.com', '$2y$10$7A0ah2ztCPdGtqCX1ymbyuVH1QQlWqC.bN62YzYCRvAsto/F7w2ei', '2018-12-20 19:22:43'),
+(10, 'teste2', 'teste2@gmail.com', '$2y$10$q.ShOR6wYsAdx6.Zni5iWeYJ6uy47//jXRGi9gQ78Fj8MNDJ57xu2', '2018-12-20 19:24:52'),
+(11, 'teste3', 'teste3@hotmail.com', '$2y$10$e/cO1xrse8Ogn4Di/zU0iOP76flAmRm1m8E9A.q5mP0zxopKz2klq', '2018-12-20 19:30:49'),
+(12, '1234', '13@hotmaldfk.com', '$2y$10$rDrGE9JcHOdbuw1LGPY0luCE.mCMxezojoS60wi53s7/duPIIKK/e', '2018-12-20 19:33:00'),
+(13, 'teste5', 'testtttt@gmail.com', '$2y$10$.TDaZYgYd9Hte7ACDyBh4.J0h9eFUPIdUBVf.e8/pIB7mKzBtejJ2', '2018-12-20 19:37:21'),
+(14, 'maisteste', 'adm@vaivai.com', '$2y$10$kYVR67Z9XrUntHOwaztOIOucREalIGD/uGzl1frzoiKRlAwLMbWRK', '2018-12-20 20:24:10'),
+(15, 'aaaa', 'a@hotmail.com', '$2y$10$i7rgW3mcDAH//ldTDY6GpOIOTeSMH3h8fISl4RlE5NgECWvWehCBu', '2018-12-20 20:28:16'),
+(16, 'testeasdfasf', 'teststestta@gmila.com', '$2y$10$olumvWGji/Xz.IoG2ZKxVehUSHtjcsmj/rHO6d5KNjngF7GIbm3Gm', '2018-12-20 20:32:31');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
