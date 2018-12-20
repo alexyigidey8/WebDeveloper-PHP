@@ -72,10 +72,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Loja Virtual</title>
 <link rel="stylesheet" href="../style/style.css" type="text/css"  />
+<script>
+
+function ocultar(obj)
+{
+  document.getElementById('i1').style.display="none";
+  document.getElementById('i2').style.display="none";
+  document.getElementById('i3').style.display="none";
+  document.getElementById('i4').style.display="none";
+  document.getElementById('i5').style.display="none";
+
+}
+
+</script>
+
 </head>
 <body>
 
 <div id="main2">
+  <div id="header"><img src="../images/logo.png"></div>
   <form method="post" >
       <h1>CADASTRO</h1>
 
@@ -95,20 +110,21 @@
         {
       ?>
           <div class="alert alert-info">
-            <i class="glyphicon glyphicon-log-in"></i> &nbsp; Foi Registrado com Sucesso <a href='login.php'>login</a> here
+            <i class="glyphicon glyphicon-log-in"></i> &nbsp; <font color='green'>REGISTRADO COM SUCESSO! </font>
+            <p> Faça seu <a href="login.php"> Login </a> ou ir para <a href="../index.php">HOME</a></p>
           </div>
       <?php
         }
       ?>
 
-      <input type="text" class="form-control" name="txt_uname" placeholder="Insira um Nome" value="<?php if(isset($error)){echo $uname;}?>" />
-      <input type="text" class="form-control" name="txt_umail" placeholder="Insira um Email" value="<?php if(isset($error)){echo $umail;}?>" />
-    	<input type="password" class="form-control" name="txt_upass" placeholder="Insira uma Senha" />
-    	<input value="CADASTRAR" type="submit" class="button" name="btn-signup">
+      <input id="i1" style="display:none;" type="text" class="form-control" name="txt_uname" placeholder="Insira um Nome" value="<?php if(isset($error)){echo $uname;}?>" />
+      <input id="i2" style="display:none;" type="text" class="form-control" name="txt_umail" placeholder="Insira um Email" value="<?php if(isset($error)){echo $umail;}?>" />
+    	<input id="i3" style="display:none;" type="password" class="form-control" name="txt_upass" placeholder="Insira uma Senha" />
+    	<input id="i4" style="display:none;" value="CADASTRAR" type="submit" class="button" name="btn-signup" onclick="ocultar(this)"/>
 
-      <p>Tenho uma conta! <a href="login.php">ENTRAR</a> ou ir <a href="../index.php">HOME</a></p>
+       <p id="i5" style="display:none;"> Tenho uma conta! <a href="login.php"> ENTRAR </a> ou ir <a href="../index.php">HOME</a></p>
   </form>
 </div>
 
-</body>
+</body
 </html>

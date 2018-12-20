@@ -67,42 +67,12 @@
           </div>';
 
     echo '<div class="item1">
-            <button class="button"> Preço '.$pr.'</button><br>
+            <button class="button2"><font color="#ffffff" size="4"> <b> Preço '.$pr.'</b></font></button><br>
             <span><b>Order No</b><br>'.$myid.'<span><br>
             <span><b>Nome</b><br>'.$name.'<span><br>
             <span><b>Order</b><br>'.$ordr.'<span><br>
             <b><b>Order Date </b>'.$cdate.'</b><br>
-            <button class="button"> '.$sts.' </button>
-          </div>';
-  }
-
-  if(isset($_POST['search']))
-  {
-
-    $myid = $_POST['search'];
-
-    $stmt = $db_con->prepare("SELECT * FROM ordrs WHERE myid = $myid");
-    $stmt->execute();
-    $row=$stmt->fetch(PDO::FETCH_ASSOC);
-
-    $img = $row['img'];
-    $name =  $row['name'];
-    $ordr = $row['ordr'];
-    $pr = $row['pr'];
-    $cdate =  $row['cdate'];
-    $sts = $row['sts'];
-
-    echo '<div class="item1">
-            <span><img src="'.$img.'"><span>
-          </div>';
-
-    echo '<div class="item1">
-            <button class="button2"> Preço '.$pr.'</button><br>
-            <span><b>ID</b><br>'.$myid.'<span><br>
-            <span><b>Nome</b><br>'.$name.'<span><br>
-            <span><b>Pedido</b><br>'.$ordr.'<span><br>
-            <b><b>Data </b>'.$cdate.'</b><br>
-            <button class="button2"> '.$sts.' </button>
+            <button class="button2"><font color="#ffffff" size="4"> <b> '.$sts.' </b></font></button>
           </div>';
   }
   //**********************************************

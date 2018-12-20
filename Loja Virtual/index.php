@@ -1,11 +1,11 @@
 <!DOCTYPE>
 <!--
-*   Data: 19/12/2018
+*   Data: 20/12/2018
 *   Autor: Thelsandro Costa Antunes
 *   Universidade do Estado do Amazonas
 *   Engenharia de Computação
 *   Projeto de Loja Virtual em PHP (Protótipo)
-*   6ª Versão
+*   7ª Versão
 -->
 
 <html xmlns="http://www.w3.org/">

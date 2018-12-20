@@ -99,7 +99,8 @@ table.altrowstable td {
 	<div id="manu">
 	<ul>
 	<li><a href="admin.php" >HOME</a></li>
-	<li><a href="product.php" >PRODUTOS</a></li>
+	<li><a href="user.php" >USUÁRIO</a></li>
+	<li><a href="product.php" >PRODUTO</a></li>
 	<li><a href="order.php" >PEDIDO</a></li>
 	<li><a href="message.php" >MENSAGEM</a></li>
 	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>

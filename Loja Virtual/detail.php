@@ -1,4 +1,3 @@
-atendimento
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/">
 <head>
@@ -43,11 +42,11 @@ atendimento
 
     echo '
           <div class="item1">
-            <button class="button2"> Preço '.$pr.'</button><br>
+            <button class="button2"><font color="#ffffff" size="4"> <b>Preço '.$pr.' </b></font></button><br>
             <h2>'.$name.'</h2>
-            <span><b>Descrição </b><br>'.$des.'<span><br><br>
+            <span><b>Descrição </b><br>'.$des.'</span><br><br>
             <b><b>Data de Publicação </b>'.$cdate.'</b><br>
-            <button class="button2"> <a href="add-order.php?pid='.$pid.'" > Pedir Agora</a> </button>
+            <a href="add-order.php?pid='.$pid.'" ><button class="button2"><font color="#ffffff" size="4"> <b> COMPRAR </b></font></button><br></a>
           </div>';
     //**********************************************
   ?>

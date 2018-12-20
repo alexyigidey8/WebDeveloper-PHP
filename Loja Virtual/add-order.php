@@ -24,11 +24,13 @@
 
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Adicionar Membro Novo</title>
 <link rel="stylesheet" href="style/style.css" type="text/css"  />
 </head>
+
 <body>
 
 <?php
@@ -49,22 +51,23 @@
 
 
 <div id="main2">
+<div id="header"><img src="images/logo.png"></div>
 	<form method='post'  action="admin/order-alert.php">
   <table class='table table-bordered'>
 		<tr>
-			<td colspan="2">	<h1>Faça seu Pedido</h1></td>
+			<td colspan="2"><h1 align="center">Faça seu Pedido</h1></td>
 		</tr>
 		<tr>
 			<td>Preço</td>
 			<td>
-				<input type='text' name='pr' value="<?php  echo $pr ?>" />
+				<input type='text' name='pr' readonly="readonly" value="<?php  echo $pr ?>"/>
 				<input type='hidden' name='img' value="<?php echo $img ?>"  />
 				<input type='hidden' name='uid' value="<?php echo $uid ?>"  />
 			</td>
 		</tr>
     <tr>
     	<td>Pedido</td>
-      <td><input type='text' name='ordr' value="<?php  echo $name ?>"  placeholder='' required /></td>
+      <td><input type='text' name='ordr' readonly="readonly" value="<?php  echo $name ?>"  placeholder='' required /></td>
     </tr>
 		<tr>
 			<td>Nome</td>
