@@ -52,40 +52,47 @@ window.onload=function(){
 
 <!-- CSS goes in the document HEAD or added to your external stylesheet -->
 <style type="text/css">
-table.altrowstable {
+table.altrowstable
+{
 	border-width: 1px;
 	border-color:  #ddd;
 	font-size: 14px;
 	border-collapse: collapse;
 }
-table.altrowstable th {
+table.altrowstable th
+{
 	border-width: 1px;
 	padding: 8px;
 	border-style: solid;
 	border-color: #ddd;
 }
-table.altrowstable td {
+table.altrowstable td
+{
 	border-width: 1px;
 	padding: 8px;
 	border-style: solid;
 	border-color: #ddd;
 }
-.oddrowcolor{
+.oddrowcolor
+{
 	background-color:#fcfcfc;
 }
 .evenrowcolor{
 	background-color:#e0dbdb;
 }
 
-ul.pagination {
+ul.pagination
+{
     text-align:center;
     color:#1f447f;
 }
-ul.pagination li {
+ul.pagination li
+{
     display:inline;
     padding:0 3px;
 }
-ul.pagination a {
+ul.pagination a
+{
     color:#5DBCD2;
     display:inline-block;
     padding:5px 10px;
@@ -93,7 +100,8 @@ ul.pagination a {
     text-decoration:none;
 }
 ul.pagination a:hover,
-ul.pagination a.current {
+ul.pagination a.current
+{
     background:#5DBCD2;
     color:#fff;
 }
@@ -108,14 +116,13 @@ ul.pagination a.current {
 <div id="header"><img src="../images/logo.png"></div>
 <div id="manu">
 	<ul>
-		<li><a href="home.php" style="background:#5DBCD2; color:#fff;" >HOME</a></li>
-		<li><a  href="../index.php" >COMPRE MAIS</a></li>
+		<li><a href="../homelog.php" style="background:#5DBCD2; color:#fff;" >HOME</a></li>
 		<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
 	</ul>
 </div>
 	<br>
 <div id="content">
-	<h2><a class="button" href="../index.php">Solicitações</a>  [Detalhe dos Pedidos] </h2>
+	<h2>[Detalhe dos Pedidos] </h2>
 	<center>
 		<table class="altrowstable" id="alternatecolor">
     	<thead>
@@ -166,8 +173,9 @@ ul.pagination a.current {
 	<center>
 		<p> Acesse Nossas Mídias Sociais </p>
 		<p><img src="../images/facebook.png"> <img src="../images/twitter.png">  <img src="../images/youtube.png"></p>
+		<b>  Protótipo de Loja Virtual - 2018 - Thelsandro Antunes.</b>
 	</center>
-		<b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
+
 </div>
 
 </body>

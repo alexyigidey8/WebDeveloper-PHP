@@ -124,20 +124,20 @@ ul.pagination a.current
 <div id="main3">
 <div id="header"><a href="../index.php"><img src="../images/logo.png"></a></div>
 <center>
-<div id="manu">
-	<ul>
-		<li><a href="admin.php" >HOME</a></li>
-		<li><a style="background:#5DBCD2; color:#fff;" href="user.php" >USUÁRIO</a></li>
-		<li><a  href="product.php" >PRODUTO</a></li>
-		<li><a href="order.php" >PEDIDO</a></li>
-		<li><a href="message.php" >MENSAGEM</a></li>
-		<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
-	</ul>
-</div>
+	<div id="manu">
+		<ul>
+			<li><a href="admin.php" >HOME</a></li>
+			<li><a style="background:#5DBCD2; color:#fff;" href="user.php" >USUÁRIO</a></li>
+			<li><a  href="product.php" >PRODUTO</a></li>
+			<li><a href="order.php" >PEDIDO</a></li>
+			<li><a href="message.php" >MENSAGEM</a></li>
+			<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
+		</ul>
+	</div>
 </center>
 <br>
 <div id="content">
-	<h2><a class="button" href="../login/admin-add.php"> Add User</a> Admin Access Only [User Page] </h2>
+	<h2><a class="button" href="../login/admin-add.php"> Adicionar Usuário</a> Acesso Restrito ao Administrador</h2>
 <center>
 	<table class="altrowstable" id="alternatecolor">
 	<thead>

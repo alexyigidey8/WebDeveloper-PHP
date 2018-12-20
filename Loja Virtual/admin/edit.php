@@ -48,10 +48,11 @@
 </head>
 <body>
 <div id="main2">
+	<div id="header"><img src="../images/logo.png"></div>
 	<form method='post' action="update.php">
 		<table class='table table-bordered'>
 		<tr>
-    	<td colspan="2"><h1>Editar Informação </h1></td>
+    	<td colspan="2"><h1 align = "center">Editar Pedido </h1></td>
 		</tr>
 		<input type='hidden' name='myid' value="<?php echo $row['myid']; ?>" />
 		<tr>

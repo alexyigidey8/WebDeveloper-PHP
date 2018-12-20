@@ -127,13 +127,14 @@ ul.pagination a.current
 <div id="header"><a href="../index.php"><img src="../images/logo.png"></a></div>
 <center>
 	<div id="manu">
-  	<ul>
-    	<li><a href="admin.php" >HOME</a></li>
-    	<li><a  href="product.php" >PRODUTO</a></li>
-    	<li><a href="order.php" >PEDIDO</a></li>
-    	<li><a style="background:#5DBCD2; color:#fff;" href="message.php" >MENSAGEM</a></li>
-    	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
-  	</ul>
+	<ul>
+	<li><a href="admin.php" >HOME</a></li>
+	<li><a href="user.php" >USUÁRIO</a></li>
+	<li><a href="product.php" >PRODUTO</a></li>
+	<li><a href="order.php" >PEDIDO</a></li>
+	<li><a href="message.php" >MENSAGEM</a></li>
+	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
+	</ul>
 	</div>
 </center>
 <br>

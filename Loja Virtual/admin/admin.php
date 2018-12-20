@@ -5,7 +5,6 @@
 	require_once("../class.user.php");
 	$auth_user = new USER();
 
-
 	$user_id = $_SESSION['user_session'];
 
 	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
@@ -111,10 +110,10 @@ table.altrowstable td {
 
 <h1><button class="button">Bem-vindo <?php //echo $userRow['user_name']; ?></button></h1>
 
-<p> In this web app admin can access rich features like below. </p>
-<p>1. Add Edit Delete Products</p>
-<p>2. Add Edit Delete Orders</p>
-<p>3. Manage Orders</p>
+<p> Neste aplicativo da web, o administrador pode acessar recursos avançados, como abaixo. </p>
+<p>1. Adicionar, Editar e Excluir Produtos</p>
+<p>2. Adicionar, Editar e Excluir Pedidos</p>
+<p>3. Gerenciar Pedidos</p>
 
 
 </div>
@@ -126,8 +125,9 @@ table.altrowstable td {
 	<center>
 	      <p> Acesse Nossas Mídias Sociais </p>
 	      <p><img src="../images/facebook.png"> <img src="../images/twitter.png">  <img src="../images/youtube.png"></p>
+				<b>  Protótipo de Loja Virtual - 2018 -Thelsandro Antunes.</b>
 	</center>
-	    <b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
+
 </div>
 </div>
 

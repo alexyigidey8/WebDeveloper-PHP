@@ -52,7 +52,7 @@
     <input type="text"  name="txt_uname_email" placeholder="Nome ou Email" required />
     <input type="password"  name="txt_password" placeholder="Sua Senha" />
     <input value="ENTRAR" type="submit" name="btn-login" class="button">
-    <p>Não possui conta! <a href="sign-up.php">CADASTRE-SE</a> ou ir <a href="../index.php">HOME</a></p>
+    <p>Não possui conta! <a href="sign-up.php">CADASTRE-SE</a> ou ir para <a href="../index.php">HOME</a></p>
 
   </form>
 </div>

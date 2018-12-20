@@ -1,13 +1,3 @@
-<!DOCTYPE>
-<!--
-*   Data: 20/12/2018
-*   Autor: Thelsandro Costa Antunes
-*   Universidade do Estado do Amazonas
-*   Engenharia de Computação
-*   Projeto de Loja Virtual em PHP (Protótipo)
-*   8ª Versão
--->
-
 <html xmlns="http://www.w3.org/">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -46,10 +36,10 @@ ul.pagination a.current
 <div id="header"><img src="images/logo.png"></div>
 <div id="manu">
   <ul>
-    <li><a style="background:#5DBCD2; color:#fff;" href="index.php">HOME</a></li>
-    <li><a href="pedidolognao.php">PROCURAR</a></li>
-    <li><a href="atendimento.php">ATENDIMENTO</a></li>
-    <li><a href="login/login.php">ENTRAR</a></li>
+    <li><a style="background:#5DBCD2; color:#fff;" href="homelog.php">HOME</a></li>
+    <li><a href="member/home.php">MEUS PEDIDOS</a></li>
+    <li><a href="atendimentologsim.php">ATENDIMENTO</a></li>
+    <li><a href="../login/logout.php?logout=true">SAIR</a></li>
   </ul>
 </div>
 

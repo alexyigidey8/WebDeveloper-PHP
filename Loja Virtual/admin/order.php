@@ -109,17 +109,21 @@ ul.pagination a.current {
 <body>
 <div id="main3">
 <div id="header"><img src="../images/logo.png"></div>
-<div id="manu">
+<center>
+	<div id="manu">
 	<ul>
-		<li><a href="admin.php" >HOME</a></li>
-		<li><a href="product.php" >PRODUTOS</a></li>
-		<li><a style="background:#5DBCD2; color:#fff;" href="order.php" >PEDIDO</a></li>
-		<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
+	<li><a href="admin.php" >HOME</a></li>
+	<li><a href="user.php" >USUÁRIO</a></li>
+	<li><a href="product.php" >PRODUTO</a></li>
+	<li><a href="order.php" >PEDIDO</a></li>
+	<li><a href="message.php" >MENSAGEM</a></li>
+	<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
 	</ul>
-</div>
+	</div>
+</center>
 <br>
 <div id="content">
-	<h2><a class="button" href="../index.php"> Adicionar Pedido</a> Admin Access Only [Order Page] </h2>
+	<h2><a class="button" href="../index.php"> Adicionar Pedido</a> Acesso Restrito ao Administrador </h2>
 	<center>
   	<table class="altrowstable" id="alternatecolor">
     	<thead>

@@ -111,22 +111,23 @@ ul.pagination a.current {
 <body>
 <div id="main3">
 <div id="header"><a href="../index.php"><img src="../images/logo.png"></div>
-	<center>
-		<div id="manu">
-			<ul>
-				<li><a href="admin.php" >HOME</a></li>
-				<li><a style="background:#5DBCD2; color:#fff;" href="product.php" >PRODUTOS</a></li>
-				<li><a href="order.php" >PEDIDO</a></li>
-				<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
-			</ul>
-		</div>
-	</center>
+<center>
+	<div id="manu">
+		<ul>
+			<li><a href="admin.php" >HOME</a></li>
+			<li><a href="user.php" >USUÁRIO</a></li>
+			<li><a style="background:#5DBCD2; color:#fff;" href="product.php" >PRODUTO</a></li>
+			<li><a href="order.php" >PEDIDO</a></li>
+			<li><a href="message.php" >MENSAGEM</a></li>
+			<li><a href="../login/logout.php?logout=true" >SAIR</a></li>
+		</ul>
+	</div>
+</center>
 	<br>
 <div id="content">
-	<h2><a class="button" href="add-product.php"> Adicionar Produto</a> Admin Access Only [Product Page] </h2>
+	<h2><a class="button" href="add-product.php"> Adicionar Produto</a> Acesso Restrito ao Administrador </h2>
 
 <center>
-
 
         <table class="altrowstable" id="alternatecolor">
         <thead>
@@ -208,8 +209,9 @@ ul.pagination a.current {
 	<center>
 	      <p> Acesse Nossas Mídias Sociais </p>
 	      <p><img src="../images/facebook.png"> <img src="../images/twitter.png">  <img src="../images/youtube.png"></p>
+				<b>  Protótipo de Loja Virtual - 2018 - Thelsandro Antunes.</b>
 	</center>
-	    <b>  Copyrights©2018 Protótipo de Loja Virtual - Thelsandro Antunes.</b>
+
 </div>
 </div>
 

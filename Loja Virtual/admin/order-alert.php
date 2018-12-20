@@ -76,7 +76,7 @@
 	$row=$stmt->fetch(PDO::FETCH_ASSOC);
 	$lid = $row['myid'];
 
-	header("Location: ../pedido.php?myid=$lid");
+	header("Location: ../pedidologsim.php?myid=$lid");
 
 ?>
 	<p><b>
@@ -88,7 +88,7 @@
  	}
 ?>
 	</b></p>
-	<p><a href="../index.php" ><button class="button" >Voltar</button</a></p>
+	<p><a href="../homelog.php" ><button class="button" >Voltar</button</a></p>
 </div>
 
 </body>

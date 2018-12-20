@@ -105,8 +105,8 @@
 	<input type="text" class="form-control" name="txt_uname" placeholder="Insira um nome" value="<?php if(isset($error)){echo $uname;}?>" />
 	<input type="text" class="form-control" name="txt_umail" placeholder="Insira um Email" value="<?php if(isset($error)){echo $umail;}?>" />
 	<input type="password" class="form-control" name="txt_upass" placeholder="Insira uma Senha" />
-	<input value="SIGN UP" type="submit" class="button" name="btn-signup">
-	<p>Já Possuo uma conta! <a href="login.php">ENTRAR</a> ir para <a href="../index.php">HOME</a></p>
+	<input value="CADASTRAR" type="submit" class="button" name="btn-signup">
+
 
 </form>
 </div>

@@ -38,10 +38,10 @@ ul.pagination a.current
 <div id="header"><img src="images/logo.png"></div>
 <div id="manu">
   <ul>
-    <li><a  href="index.php">HOME</a></li>
-    <li><a href="pedidolognao.php">PROCURAR</a></li>
-    <li><a style="background:#5DBCD2; color:#fff;" href="atendimento.php">ATENDIMENTO</a></li>
-    <li><a href="login/login.php">ENTRAR</a></li>
+    <li><a  href="homelog.php">HOME</a></li>
+    <li><a href="member/home.php">MEUS PEDIDOS</a></li>
+    <li><a style="background:#5DBCD2; color:#fff;" href="atendimentologsim.php">ATENDIMENTO</a></li>
+    <li><a href="../login/logout.php?logout=true">SAIR</a></li>
   </ul>
 </div>
 <div id="content">

@@ -15,7 +15,6 @@
   	$umail = strip_tags($_POST['txt_umail']);
   	$upass = strip_tags($_POST['txt_upass']);
 
-
   	if($uname=="")
     {
   		$error[] = "<b><font color='red'>Forneça seu Nome!</font></b>";
@@ -72,16 +71,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Loja Virtual</title>
 <link rel="stylesheet" href="../style/style.css" type="text/css"  />
-<script>
+
+<script language="javascript">
 
 function ocultar(obj)
 {
-  document.getElementById('i1').style.display="none";
-  document.getElementById('i2').style.display="none";
-  document.getElementById('i3').style.display="none";
-  document.getElementById('i4').style.display="none";
-  document.getElementById('i5').style.display="none";
-
+  if (document.getElementById("i4").checked)
+  {
+    document.getElementById('i1').style.display="none";
+    document.getElementById('i2').style.display="none";
+    document.getElementById('i3').style.display="none";
+    document.getElementById('i4').style.display="none";
+    document.getElementById('i5').style.display="none";
+  }
 }
 
 </script>
@@ -115,14 +117,18 @@ function ocultar(obj)
           </div>
       <?php
         }
+        else
+        {
       ?>
+          <input id="i1" type="text" class="form-control" name="txt_uname" placeholder="Insira um Nome" value="<?php if(isset($error)){echo $uname;}?>" />
+          <input id="i2"  type="text" class="form-control" name="txt_umail" placeholder="Insira um Email" value="<?php if(isset($error)){echo $umail;}?>" />
+          <input id="i3"  type="password" class="form-control" name="txt_upass" placeholder="Insira uma Senha" />
+          <input id="i4"  checked="checked" value="CADASTRAR" type="submit" class="button" name="btn-signup" onclick="ocultar(this)"/>
 
-      <input id="i1" style="display:none;" type="text" class="form-control" name="txt_uname" placeholder="Insira um Nome" value="<?php if(isset($error)){echo $uname;}?>" />
-      <input id="i2" style="display:none;" type="text" class="form-control" name="txt_umail" placeholder="Insira um Email" value="<?php if(isset($error)){echo $umail;}?>" />
-    	<input id="i3" style="display:none;" type="password" class="form-control" name="txt_upass" placeholder="Insira uma Senha" />
-    	<input id="i4" style="display:none;" value="CADASTRAR" type="submit" class="button" name="btn-signup" onclick="ocultar(this)"/>
-
-       <p id="i5" style="display:none;"> Tenho uma conta! <a href="login.php"> ENTRAR </a> ou ir <a href="../index.php">HOME</a></p>
+          <p id="i5" > Tenho uma conta! <a href="login.php"> ENTRAR </a> ou ir <a href="../index.php">HOME</a></p>
+      <?php
+        }
+      ?>
   </form>
 </div>
 
