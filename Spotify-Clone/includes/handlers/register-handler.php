@@ -40,6 +40,7 @@
 
 		if ($wasSuccessful == true) 
 		{
+			$_SESSION['userLoggedIn'] = $username;
 			header("Location: index.php");
 		}
 	}

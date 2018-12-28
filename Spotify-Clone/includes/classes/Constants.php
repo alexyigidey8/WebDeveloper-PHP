@@ -11,5 +11,6 @@
 		public static $firstNameCharacters = "Nome deve conter entre 2 a 25 caracteres";
 		public static $usernameCharacters = "Usuário deve conter entre 5 a 25 caracteres";
 		public static $usernameTaken = "Este usuário já existe";
+		public static $loginFailed = "Seu usuário ou senha está incorreto";
 	}
 ?>
