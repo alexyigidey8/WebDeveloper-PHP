@@ -1,6 +1,6 @@
 <?php
 	include("includes/classes/Account.php");
-
+	include("includes/classes/Constants.php");
 	$account = new Account();
 
 	include("includes/handlers/register-handler.php");
@@ -29,28 +29,36 @@
 		</form>
 
 		<form id="registerForm" action="register.php" method="POST">
-			<h2>Crie sua conta gratuitamente</h2>
+			<h2>Crie sua conta gratuitamente</h2>			
 			<p>
+				<?php echo $account->getError(Constants::$usernameCharacters); ?>
 				<label for="username">Usuário</label>
 				<input id="username" name="username" type="text" placeholder="e.g. zéCarioca" requerid>
 			</p>
 			<p>
+				<?php echo $account->getError(Constants::$firstNameCharacters); ?>
 				<label for="firstName">Nome</label>
 				<input id="firstName" name="firstName" type="text" placeholder="e.g. Zé" requerid>
 			</p>
 			<p>
+				<?php echo $account->getError(Constants::$lastNameCharacters); ?>
 				<label for="lastName">Sobrenome</label>
 				<input id="lastName" name="lastName" type="text" placeholder="e.g. Carioca" requerid>
 			</p>
 			<p>
+				<?php echo $account->getError(Constants::$emailsDoNoMatch); ?>
+				<?php echo $account->getError(Constants::$emailInvalid); ?>
 				<label for="email">Email</label>
-				<input id="email" name="email" type="text" placeholder="e.g. ze@gmail.com" requerid>
+				<input id="email" name="email" type="email" placeholder="e.g. ze@gmail.com" requerid>
 			</p>
 			<p>
 				<label for="email2">Confirmar Email</label>
-				<input id="email2" name="email2 " type="text" placeholder="e.g. ze@gmail.com" requerid>
+				<input id="email2" name="email2" type="email" placeholder="e.g. ze@gmail.com" requerid>
 			</p>
 			<p>
+				<?php echo $account->getError(Constants::$passwordsDoNoMatch); ?>
+				<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
+				<?php echo $account->getError(Constants::$passwordCharacters); ?>
 				<label for="password">Senha</label>
 				<input id="password" name="password" type="password" placeholder="Sua Senha" requerid>
 			</p>
