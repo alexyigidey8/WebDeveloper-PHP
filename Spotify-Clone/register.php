@@ -20,12 +20,41 @@
 <html>
 <head>
 	<title>Bem-vindo ao Spotify-CLone</title>
+	
 	<link rel="stylesheet" type="text/css" href="assets/css/register.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="assets/js/register.js"></script>
 </head>
 <body>
+	<?php 
+		if (isset($_POST['registerButton'])) 
+		{
+			echo '	<script>
+						$(document).ready(function() 
+						{
+							$("#loginForm").hide();
+							$("#registerForm").show();
+						});
+					</script>';
+		}
+		else
+		{
+			echo '	<script>
+						$(document).ready(function() 
+						{
+							$("#loginForm").show();
+							$("#registerForm").hide();
+						});
+					</script>';
+		}
+	?>
+	
 	<div id="background"> 
-		<div id="inputContainer">
-			<div id="loginContainer">
+
+		<div id="loginContainer">
+
+			<div id="inputContainer">
 				<form id="loginForm" action="register.php" method="POST">
 					<h2>Login para sua conta</h2>
 					<p>
@@ -39,6 +68,9 @@
 					</p>
 					<?php ?>
 					<button type="submit" name="loginButton">ENTRAR</button>
+					<div class="hasAccountText">
+						<span id="hideLogin"> Não tem uma conta ainda? Inscreva-se aqui. </span>
+					</div>
 				</form>
 
 				<form id="registerForm" action="register.php" method="POST">
@@ -82,7 +114,20 @@
 						<input id="password2" name="password2" type="password" placeholder="Sua Senha" requerid>
 					</p>
 					<button type="submit" name="registerButton">CADASTRAR</button>
+					<div class="hasAccountText">
+						<span id="hideRegister"> Já tem uma conta ainda? Entre aqui. </span>
+					</div>
 				</form>
+			</div>
+			<div id="loginText">
+				<h1>Obtenha ótimas músicas, agora.</h1>
+				<h2>Ouça os sons mais lindos de graça.</h2>
+
+				<ul>
+					<li>Você irá se apaixonar com a descoberta de novas músicas</li>
+					<li>Crie sua própria Playlist</li>
+					<li>Seguir artistas para se manter atualizado</li>
+				</ul>
 			</div>
 		</div>
 	</div>
