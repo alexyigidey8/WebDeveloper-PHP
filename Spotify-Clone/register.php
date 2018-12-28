@@ -5,6 +5,13 @@
 
 	include("includes/handlers/register-handler.php");
 	include("includes/handlers/login-handler.php");
+
+	function getInputValue($name)
+	{
+		if (isset($_POST[$name])) {
+			echo $_POST[$name];
+		}
+	}
 ?>
 
 <html>
@@ -18,7 +25,7 @@
 			<h2>Login para sua conta</h2>
 			<p>
 				<label for="loginUsername">Usuário</label>
-				<input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. zéCarioca" requerid>
+				<input id="loginUsername" name="loginUsername" type="text" placeholder="ex. zéCarioca" requerid>
 			</p>
 			<p>
 				<label for="loginPassword">Senha</label>
@@ -33,27 +40,27 @@
 			<p>
 				<?php echo $account->getError(Constants::$usernameCharacters); ?>
 				<label for="username">Usuário</label>
-				<input id="username" name="username" type="text" placeholder="e.g. zéCarioca" requerid>
+				<input id="username" name="username" type="text" placeholder="ex. zéCarioca" value="<?php getInputValue('username')?>" requerid>
 			</p>
 			<p>
 				<?php echo $account->getError(Constants::$firstNameCharacters); ?>
 				<label for="firstName">Nome</label>
-				<input id="firstName" name="firstName" type="text" placeholder="e.g. Zé" requerid>
+				<input id="firstName" name="firstName" type="text" placeholder="ex. Zé" value="<?php getInputValue('firstName')?>" requerid>
 			</p>
 			<p>
 				<?php echo $account->getError(Constants::$lastNameCharacters); ?>
 				<label for="lastName">Sobrenome</label>
-				<input id="lastName" name="lastName" type="text" placeholder="e.g. Carioca" requerid>
+				<input id="lastName" name="lastName" type="text" placeholder="ex. Carioca" value="<?php getInputValue('lastName')?>" requerid>
 			</p>
 			<p>
 				<?php echo $account->getError(Constants::$emailsDoNoMatch); ?>
 				<?php echo $account->getError(Constants::$emailInvalid); ?>
 				<label for="email">Email</label>
-				<input id="email" name="email" type="email" placeholder="e.g. ze@gmail.com" requerid>
+				<input id="email" name="email" type="email" placeholder="ex. ze@gmail.com" value="<?php getInputValue('email')?>" requerid>
 			</p>
 			<p>
 				<label for="email2">Confirmar Email</label>
-				<input id="email2" name="email2" type="email" placeholder="e.g. ze@gmail.com" requerid>
+				<input id="email2" name="email2" type="email" placeholder="ex. ze@gmail.com" value="<?php getInputValue('email2')?>" requerid>
 			</p>
 			<p>
 				<?php echo $account->getError(Constants::$passwordsDoNoMatch); ?>
