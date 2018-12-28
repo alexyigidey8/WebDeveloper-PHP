@@ -2,10 +2,12 @@
 	class Account
 	{
 
+		private $con;
 		private $errorArray;
 
-		public function __construct()
+		public function __construct($con)
 		{
+			$this->con = $con;
 			$this->errorArray = array();
 		}
 
@@ -17,9 +19,10 @@
 			$this->validateEmails($em,$em2);
 			$this->validatePasswords($pw, $pw2);
 
-			if (empty($this->errorArray) == true) {
+			if(empty($this->errorArray) == true) 
+			{
 				# insert into db
-				return true;
+				return $this->insertUserDetails($un,$fn,$ln,$em,$pw);
 			}
 			else
 			{
@@ -36,6 +39,19 @@
 			return "<span class='errorMessage'>$error</span>";
 		}
 
+		private function insertUserDetails($un,$fn,$ln,$em,$pw)
+		{
+			$encryptedpw = md5($pw);
+			$profilepic  = "assets/images/profile-pics/head_emerald.png";
+			$date = date("Y-m-d");
+
+			$result = mysqli_query($this->con,"INSERT INTO users VALUES (DEFAULT, '$un','$fn','$ln','$em','$encryptedpw','$date','$profilepic')");
+			echo $result;
+			printf("INSERIDO: %d", mysql_insert_id());
+
+			return $result;
+		}
+
 		private function validateUsername($un)
 		{
 			if(strlen($un) > 25 || strlen($un) < 5)
@@ -44,7 +60,12 @@
 				return;
 			}
 
-			//TODO: verifica se o usuário existe.
+			$checkUsernameQuery = mysqli_query($this->con,"SELECT username FROM users WHERE username = '$un'");
+
+			if (mysqli_num_rows($checkUsernameQuery) != 0) 
+			{
+				array_push($this->errorArray, Constants:: $usernameTaken);
+			}
 		}
 
 		private function validateFirstName($fn)
@@ -77,6 +98,13 @@
 			{
 				array_push($this->errorArray, Constants::$emailInvalid);
 				return;
+			}
+
+			$checkEmailQuery = mysqli_query($this->con,"SELECT email FROM users WHERE email = '$em'");
+
+			if (mysqli_num_rows($checkEmailQuery) != 0) 
+			{
+				array_push($this->errorArray, Constants:: $emailTaken);
 			}
 
 		}
