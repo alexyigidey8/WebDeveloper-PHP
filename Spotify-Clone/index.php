@@ -30,6 +30,20 @@
 		<div id="nowPlayingBar">
 
 			<div id="nowPlayingLeft">
+				<div class="content">
+					<span class="albumLink">
+						<img src="//i.scdn.co/image/c9ffdfbed7e909b0fc4ca210af52ca63ebdc696a" class="albumArtwork">
+					</span>
+					<div class="trackInfo">
+						<span class="trackName">
+							<span>Collecting Bullets</span>
+						</span>
+						<span class="artistName">
+							<span>Rosi Golan</span>
+						</span>
+						
+					</div>
+				</div>
 
 			</div>
 
@@ -88,6 +102,17 @@
 			</div>
 
 			<div id="nowPlayingRight">
+				<div class="volumeBar">
+					<button class="controlButton volume" title="Volume Button">
+						<img src="assets/images/icons/volume.png" alt="Volume">
+					</button>
+					<div class="progressBar">
+						<div class="progressBarBg">
+							<div class="progress"></div>
+						</div>
+					</div>
+					
+				</div>
 
 			</div>
 
