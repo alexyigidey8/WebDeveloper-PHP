@@ -1,5 +1,5 @@
 <?php include("includes/header.php"); ?>
-	<h1 class="pageHeadingBig">SpoThelFy</h1>
+	<h1 class="pageHeadingBig">SpotThel</h1>
 	<div class="gridViewContainer">
 		<?php
 			$albumQuery = mysqli_query($con, "SELECT * FROM albums ORDER BY rand() LIMIT 10" );
@@ -7,7 +7,7 @@
 			{
 				echo "	<div class='gridViewItem'> 
 
-							<a href='album.php?id='".$row['id']."' >
+							<a href='album.php?id=".$row['id']."' >
 
 								<img src='". $row['artworkpath']."'>
 								
