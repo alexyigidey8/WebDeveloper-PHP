@@ -16,12 +16,40 @@ $(document).ready(function() {
 	currentPlaylist = <?php echo $jsonArray; ?>;
 	audioElement = new Audio();
 	setTrack(currentPlaylist[0], currentPlaylist, false);
+
+
+	
+
+
+
+
 });
 
 
 function setTrack(trackId, newPlaylist, play) {
 
-	audioElement.setTrack("assets/music/Mallu_Magalhaes_Casa_Pronta.mp3");
+	$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
+
+		var track = JSON.parse(data);
+
+		$(".trackName span").text(track.title);
+
+		$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
+			var artist = JSON.parse(data);
+
+			$(".artistName span").text(artist.name);
+		});
+
+		$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
+			var album = JSON.parse(data);
+
+			$(".albumLink img").attr("src", album.artworkpath);
+		});
+
+
+		audioElement.setTrack(track);
+		audioElement.play();
+	});
 
 	if(play == true) {
 		audioElement.play();
@@ -29,6 +57,12 @@ function setTrack(trackId, newPlaylist, play) {
 }
 
 function playSong() {
+
+	if (audioElement.audio.currentTime = 0) 
+	{
+		$.post("includes/handlers/ajax/updatePlays.php", { albumId: audioElement.currentlyPlaying.id });
+	}
+
 	$(".controlButton.play").hide();
 	$(".controlButton.pause").show();
 	audioElement.play();
@@ -50,19 +84,24 @@ function pauseSong() {
 		<div id="nowPlayingLeft">
 			<div class="content">
 				<span class="albumLink">
-					<img src="//i.scdn.co/image/c9ffdfbed7e909b0fc4ca210af52ca63ebdc696a" class="albumArtwork">
+					<img src="" class="albumArtwork">
 				</span>
-				<div class="trackInfo">
-					<span class="trackName">
-						<span>Collecting Bullets</span>
-					</span>
-					<span class="artistName">
-						<span>Rosi Golan</span>
-					</span>
-					
-				</div>
-			</div>
 
+				<div class="trackInfo">
+
+					<span class="trackName">
+						<span></span>
+					</span>
+
+					<span class="artistName">
+						<span></span>
+					</span>
+
+				</div>
+
+
+
+			</div>
 		</div>
 
 		<div id="nowPlayingCenter">
@@ -121,17 +160,23 @@ function pauseSong() {
 
 		<div id="nowPlayingRight">
 			<div class="volumeBar">
-				<button class="controlButton volume" title="Volume Button">
+
+				<button class="controlButton volume" title="Volume button">
 					<img src="assets/images/icons/volume.png" alt="Volume">
 				</button>
+
 				<div class="progressBar">
 					<div class="progressBarBg">
 						<div class="progress"></div>
 					</div>
 				</div>
-				
-			</div>
 
+			</div>
 		</div>
+
+
+
+
 	</div>
+
 </div>
