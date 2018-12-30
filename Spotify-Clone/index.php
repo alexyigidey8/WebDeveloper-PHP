@@ -1,3 +1,12 @@
+<!--
+*   Data: 30/12/2018
+*   Autor: Thelsandro Costa Antunes
+*	Técnico em Redes de Computadores - CETAM
+*   Discente de Engenharia de Computação - UEA
+*   Projeto de Aplicativo de Músicas em PHP (Clone do Spotify)
+*   5ª Versão
+-->
+
 <?php include("includes/header.php"); ?>
 	<h1 class="pageHeadingBig">SpotThel</h1>
 	<div class="gridViewContainer">
