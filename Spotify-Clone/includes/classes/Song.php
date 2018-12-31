@@ -1,5 +1,6 @@
 <?php
-	class Song {
+	class Song 
+	{
 
 		private $con;
 		private $id;
@@ -11,7 +12,8 @@
 		private $duration;
 		private $path;
 
-		public function __construct($con, $id) {
+		public function __construct($con, $id) 
+		{
 			$this->con = $con;
 			$this->id = $id;
 
@@ -25,31 +27,43 @@
 			$this->path = $this->mysqliData['path'];
 		}
 
-		public function getTitle() {
+		public function getId() 
+		{
+			return $this->id;
+		}
+
+		public function getTitle() 
+		{
 			return $this->title;
 		}
 
-		public function getArtist() {
+		public function getArtist() 
+		{
 			return new Artist($this->con, $this->artistId);
 		}
 
-		public function getAlbum() {
+		public function getAlbum() 
+		{
 			return new Album($this->con, $this->albumId);
 		}
 
-		public function getPath() {
+		public function getPath() 
+		{
 			return $this->path;
 		}
 
-		public function getDuration() {
+		public function getDuration() 
+		{
 			return $this->duration;
 		}
 
-		public function getMysqliData() {
+		public function getMysqliData() 
+		{
 			return $this->mysqliData;
 		}
 
-		public function getGenre() {
+		public function getGenre() 
+		{
 			return $this->genre;
 		}
 
