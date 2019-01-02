@@ -13,6 +13,6 @@
 	}
 	else 
 	{
-		echo "Parêmtros Nome ou Usuário não estão no arquivo";
+		echo "Nome ou Usuário parâmetros que não estão no arquivo";
 	}
 ?>

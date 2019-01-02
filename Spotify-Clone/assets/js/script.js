@@ -9,10 +9,53 @@ var shuffle = false;
 var userLoggedIn;
 var timer;
 
-function openPage(url) 
+$(document).click(function(click) 
 {
-	if (timer != null) 
+	var target = $(click.target);
+
+	if(!target.hasClass("item") && !target.hasClass("optionsButton")) 
 	{
+		hideOptionsMenu();
+	}
+});
+
+$(window).scroll(function() 
+{
+	hideOptionsMenu();
+});
+
+$(document).on("change", "select.playlist", function() 
+{
+	var select = $(this);
+	var playlistId = select.val();
+	var songId = select.prev(".songId").val();
+
+	$.post("includes/handlers/ajax/addToPlaylist.php", { playlistId: playlistId, songId: songId})
+	.done(function(error) 
+	{
+
+		if(error != "") 
+		{
+			alert(error);
+			return;
+		}
+
+		hideOptionsMenu();
+		select.val("");
+	});
+});
+
+function logout() 
+{
+	$.post("includes/handlers/ajax/logout.php", function() 
+	{
+		location.reload();
+	});
+}
+
+function openPage(url) {
+
+	if(timer != null) {
 		clearTimeout(timer);
 	}
 
@@ -28,51 +71,98 @@ function openPage(url)
 	history.pushState(null, null, url);
 }
 
-function createPlaylist() {
-	console.log(userLoggedIn);
-	var popup = prompt("Por favor entre com o nome de sua playlist");
-
-	if(popup != null) {
-
-		$.post("includes/handlers/ajax/createPlaylist.php", { name: popup, username: userLoggedIn })
-		.done(function(error) {
-
-			if(error != "") {
-				alert(error);
-				return;
-			}
-
-			
-			openPage("yourMusic.php");
-		});
-
-	}
-
-}
-
-function deletePlaylist(playlistId)
+function removeFromPlaylist(button, playlistId) 
 {
-	var prompt = confirm("Você tem certeza em Excluir esta Playlist?");
-	if(prompt == true)
-	{
-		$.post("includes/handlers/ajax/deletePlaylist.php", { playlistId: playlistId })
-		.done(function(error) {
+	var songId = $(button).prevAll(".songId").val();
 
-			if(error != "") {
+	$.post("includes/handlers/ajax/removeFromPlaylist.php", { playlistId: playlistId, songId: songId })
+	.done(function(error) 
+	{
+		if(error != "") 
+		{
+			alert(error);
+			return;
+		}
+
+		openPage("playlist.php?id=" + playlistId);
+	});
+}
+
+function createPlaylist() 
+{
+	console.log(userLoggedIn);
+	var popup = prompt("Please enter the name of your playlist");
+
+	if(popup != null) 
+	{
+		$.post("includes/handlers/ajax/createPlaylist.php", { name: popup, username: userLoggedIn })
+		.done(function(error) 
+		{
+			if(error != "") 
+			{
 				alert(error);
 				return;
 			}
 
-			
 			openPage("yourMusic.php");
 		});
 	}
 }
+
+function deletePlaylist(playlistId) 
+{
+	var prompt = confirm("Você tem certerza em excluir esta playlist?");
+
+	if(prompt == true) 
+	{
+
+		$.post("includes/handlers/ajax/deletePlaylist.php", { playlistId: playlistId })
+		.done(function(error) 
+		{
+			if(error != "") 
+			{
+				alert(error);
+				return;
+			}
+
+			openPage("yourMusic.php");
+		});
+
+
+	}
+}
+
+function hideOptionsMenu() 
+{
+	var menu = $(".optionsMenu");
+	if(menu.css("display") != "none") 
+	{
+		menu.css("display", "none");
+	}
+}
+
+function showOptionsMenu(button) 
+{
+	var songId = $(button).prevAll(".songId").val();
+	var menu = $(".optionsMenu");
+	var menuWidth = menu.width();
+	menu.find(".songId").val(songId);
+
+	var scrollTop = $(window).scrollTop();
+	var elementOffset = $(button).offset().top;
+
+	var top = elementOffset - scrollTop;
+	var left = $(button).position().left;
+
+	menu.css({ "top": top + "px", "left": left - menuWidth + "px", "display": "inline" });
+
+}
+
 
 function formatTime(seconds) 
 {
 	var time = Math.round(seconds);
-	var minutes = Math.floor(time / 60); //Rounds down
+	var minutes = Math.floor(time / 60);
 	var seconds = time - (minutes * 60);
 
 	var extraZero = (seconds < 10) ? "0" : "";
@@ -95,7 +185,7 @@ function updateVolumeProgressBar(audio)
 	$(".volumeBar .progress").css("width", volume + "%");
 }
 
-function playFirstSong()
+function playFirstSong() 
 {
 	setTrack(tempPlaylist[0], tempPlaylist, true);
 }
@@ -113,7 +203,6 @@ function Audio()
 
 	this.audio.addEventListener("canplay", function() 
 	{
-		//'this' refers to the object that the event was called on
 		var duration = formatTime(this.duration);
 		$(".progressTime.remaining").text(duration);
 	});

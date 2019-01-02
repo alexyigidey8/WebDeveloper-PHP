@@ -10,6 +10,6 @@
 	}
 	else
 	{
-		echo "";
+		echo "PlaylistId parâmetro que não está no arquivo";
 	}
 ?>
