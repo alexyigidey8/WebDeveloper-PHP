@@ -50,6 +50,25 @@ function createPlaylist() {
 
 }
 
+function deletePlaylist(playlistId)
+{
+	var prompt = confirm("Você tem certeza em Excluir esta Playlist?");
+	if(prompt == true)
+	{
+		$.post("includes/handlers/ajax/deletePlaylist.php", { playlistId: playlistId })
+		.done(function(error) {
+
+			if(error != "") {
+				alert(error);
+				return;
+			}
+
+			
+			openPage("yourMusic.php");
+		});
+	}
+}
+
 function formatTime(seconds) 
 {
 	var time = Math.round(seconds);
