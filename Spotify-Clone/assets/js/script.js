@@ -6,13 +6,30 @@ var mouseDown = false;
 var currentIndex = 0;
 var repeat = false;
 var shuffle = false;
+var userLoggedIn;
+
+function openPage(url) 
+{
+
+	if(url.indexOf("?") == -1) 
+	{
+		url = url + "?";
+	}
+
+	var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
+	console.log(encodedUrl);
+	$("#mainContent").load(encodedUrl);
+	$("body").scrollTop(0);
+	history.pushState(null, null, url);
+}
 
 
 function formatTime(seconds) 
 {
 	var time = Math.round(seconds);
-	var minutes = Math.floor(time / 60); 
+	var minutes = Math.floor(time / 60); //Rounds down
 	var seconds = time - (minutes * 60);
+
 	var extraZero = (seconds < 10) ? "0" : "";
 
 	return minutes + ":" + extraZero + seconds;
@@ -46,7 +63,7 @@ function Audio()
 
 	this.audio.addEventListener("canplay", function() 
 	{
-	
+		//'this' refers to the object that the event was called on
 		var duration = formatTime(this.duration);
 		$(".progressTime.remaining").text(duration);
 	});

@@ -1,44 +1,46 @@
-<?php include("includes/header.php"); 
+<?php include("includes/includedFiles.php"); 
 
-	if(isset($_GET['id']))
+	if(isset($_GET['id'])) 
 	{
 		$albumId = $_GET['id'];
 	}
-	else
+	else 
 	{
 		header("Location: index.php");
 	}
 
 	$album = new Album($con, $albumId);
-
 	$artist = $album->getArtist();
-
-	//echo $album->getTitle() . "<br>";
-	//echo $artist->getName();
-	
 ?>
 
 <div class="entityInfo">
+
 	<div class="leftSection">
-		<img src="<?php echo $album->getArtWorkPath();?>">
+		<img src="<?php echo $album->getArtworkPath(); ?>">
 	</div>
+
 	<div class="rightSection">
 		<h2><?php echo $album->getTitle(); ?></h2>
-		<p>Por <?php echo $artist->getName(); ?></p>
-		<p><?php echo $album->getNumberOfSongs(); ?> músicas</p>
-		
+		<p>By <?php echo $artist->getName(); ?></p>
+		<p><?php echo $album->getNumberOfSongs(); ?> songs</p>
+
 	</div>
+
 </div>
 
-<div class="trackListContainer">
-	<ul class="trackList">
-		<?php 
 
+<div class="tracklistContainer">
+	<ul class="tracklist">
+		
+		<?php
+		
 			$songIdArray = $album->getSongIds();
-			$i = 1;
 
-			foreach ($songIdArray as $songId) 
+			$i = 1;
+		
+			foreach($songIdArray as $songId) 
 			{
+
 				$albumSong = new Song($con, $songId);
 				$albumArtist = $albumSong->getArtist();
 
@@ -47,7 +49,6 @@
 								<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 								<span class='trackNumber'>$i</span>
 							</div>
-
 
 							<div class='trackInfo'>
 								<span class='trackName'>" . $albumSong->getTitle() . "</span>
@@ -61,10 +62,7 @@
 							<div class='trackDuration'>
 								<span class='duration'>" . $albumSong->getDuration() . "</span>
 							</div>
-
-
 						</li>";
-
 				$i = $i + 1;
 			}
 		?>
@@ -76,7 +74,3 @@
 
 	</ul>
 </div>
-
-
-<?php include("includes/footer.php"); ?>
-				

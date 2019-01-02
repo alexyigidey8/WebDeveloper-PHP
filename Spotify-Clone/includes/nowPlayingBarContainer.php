@@ -1,5 +1,5 @@
 <?php
-
+	
 	$songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 10");
 
 	$resultArray = array();
@@ -10,7 +10,6 @@
 	}
 
 	$jsonArray = json_encode($resultArray);
-
 ?>
 
 <script>
@@ -28,7 +27,6 @@ $(document).ready(function()
 		e.preventDefault();
 	});
 
-
 	$(".playbackBar .progressBar").mousedown(function() 
 	{
 		mouseDown = true;
@@ -37,7 +35,7 @@ $(document).ready(function()
 	$(".playbackBar .progressBar").mousemove(function(e) 
 	{
 		if(mouseDown == true) 
-		{
+		{	
 			timeFromOffset(e, this);
 		}
 	});
@@ -46,7 +44,6 @@ $(document).ready(function()
 	{
 		timeFromOffset(e, this);
 	});
-
 
 	$(".volumeBar .progressBar").mousedown(function() 
 	{
@@ -57,7 +54,6 @@ $(document).ready(function()
 	{
 		if(mouseDown == true) 
 		{
-
 			var percentage = e.offsetX / $(this).width();
 
 			if(percentage >= 0 && percentage <= 1) 
@@ -81,7 +77,6 @@ $(document).ready(function()
 	{
 		mouseDown = false;
 	});
-
 });
 
 function timeFromOffset(mouse, progressBar) 
@@ -106,11 +101,11 @@ function prevSong()
 
 function nextSong() 
 {
-
 	if(repeat == true) 
 	{
 		audioElement.setTime(0);
 		playSong();
+	
 		return;
 	}
 
@@ -120,10 +115,10 @@ function nextSong()
 	}
 	else 
 	{
-		currentIndex = currentIndex + 1;
+		currentIndex++;
 	}
 
-	var trackToPlay =  shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
+	var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
 	setTrack(trackToPlay, currentPlaylist, true);
 }
 
@@ -147,57 +142,53 @@ function setShuffle()
 	var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
 	$(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
 
-	console.log(currentPlaylist);
-	console.log(shufflePlaylist);
-
-	if(shuffle == true)
+	if(shuffle == true) 
 	{
 		shuffleArray(shufflePlaylist);
 		currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
 	}
-	else
+	else 
 	{
-		currentIndex = currentlyPlaylist.indexOf(audioElement.currentlyPlaying.id);
+		currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
 	}
 
 }
 
-function shuffleArray(a)
+function shuffleArray(a) 
 {
-	var j, x, i;
-
-	for (i = a.length; i ; i--) 
-	{
-		j = Math.floor(Math.random()*i);
-		x = a[i-1];
-		a[i-1] = a[j];
-		a[j] = x;
-	}
+    var j, x, i;
+    for (i = a.length; i; i--) 
+    {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
 }
+
 
 function setTrack(trackId, newPlaylist, play) 
 {
-	if (newPlaylist != currentPlaylist) 
+	if(newPlaylist != currentPlaylist) 
 	{
 		currentPlaylist = newPlaylist;
 		shufflePlaylist = currentPlaylist.slice();
 		shuffleArray(shufflePlaylist);
 	}
 
-	if (shuffle == true) 
+	if(shuffle == true) 
 	{
 		currentIndex = shufflePlaylist.indexOf(trackId);
 	}
-	else
+	else 
 	{
 		currentIndex = currentPlaylist.indexOf(trackId);
 	}
-
+	
 	pauseSong();
 
 	$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) 
 	{
-
 		var track = JSON.parse(data);
 		$(".trackName span").text(track.title);
 
@@ -215,13 +206,12 @@ function setTrack(trackId, newPlaylist, play)
 
 
 		audioElement.setTrack(track);
-		playSong();
-	});
 
-	if(play == true) 
-	{
-		audioElement.play();
-	}
+		if(play == true) 
+		{
+			playSong();
+		}
+	});
 }
 
 function playSong() 
@@ -234,7 +224,6 @@ function playSong()
 
 	$(".controlButton.play").hide();
 	$(".controlButton.pause").show();
-
 	audioElement.play();
 }
 
@@ -242,12 +231,10 @@ function pauseSong()
 {
 	$(".controlButton.play").show();
 	$(".controlButton.pause").hide();
-
 	audioElement.pause();
 }
 
 </script>
-
 
 <div id="nowPlayingBarContainer">
 
@@ -270,9 +257,6 @@ function pauseSong()
 					</span>
 
 				</div>
-
-
-
 			</div>
 		</div>
 
@@ -290,7 +274,7 @@ function pauseSong()
 						<img src="assets/images/icons/previous.png" alt="Previous">
 					</button>
 
-					<button class="controlButton play" title="Play button"  onclick="playSong()">
+					<button class="controlButton play" title="Play button" onclick="playSong()">
 						<img src="assets/images/icons/play.png" alt="Play">
 					</button>
 
@@ -307,7 +291,6 @@ function pauseSong()
 					</button>
 
 				</div>
-
 
 				<div class="playbackBar">
 
@@ -336,10 +319,7 @@ function pauseSong()
 						<div class="progress"></div>
 					</div>
 				</div>
-
 			</div>
 		</div>
-
 	</div>
-
 </div>
