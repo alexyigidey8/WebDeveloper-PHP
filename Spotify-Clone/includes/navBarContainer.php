@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('yourMusic.php')" class="navItemLink">Sua Música</span>
+				<span role="link" tabindex="0" onclick="openPage('yourMusic.php')" class="navItemLink">Suas Músicas</span>
 			</div>
 
 			<div class="navItem">
