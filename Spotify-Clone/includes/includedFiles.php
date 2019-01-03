@@ -9,12 +9,11 @@
 		include("includes/classes/Song.php");
 		include("includes/classes/Playlist.php");
 
-
-		if (isset($_GET['userLoggedIn'])) 
+		if(isset($_GET['userLoggedIn'])) 
 		{
 			$userLoggedIn = new User($con, $_GET['userLoggedIn']);
 		}
-		else
+		else 
 		{
 			echo "usuário não foi encontrado na página. Verifique a função openPage";
 			exit();

@@ -45,6 +45,40 @@ $(document).on("change", "select.playlist", function()
 	});
 });
 
+
+function updateEmail(emailClass) 
+{
+	var emailValue = $("." + emailClass).val();
+
+	$.post("includes/handlers/ajax/updateEmail.php", { email: emailValue, username: userLoggedIn})
+	.done(function(response) 
+	{
+		$("." + emailClass).nextAll(".message").text(response);
+	})
+
+
+}
+
+function updatePassword(oldPasswordClass, newPasswordClass1, newPasswordClass2) 
+{
+	var oldPassword = $("." + oldPasswordClass).val();
+	var newPassword1 = $("." + newPasswordClass1).val();
+	var newPassword2 = $("." + newPasswordClass2).val();
+
+	$.post("includes/handlers/ajax/updatePassword.php", 
+		{ oldPassword: oldPassword,
+			newPassword1: newPassword1,
+			newPassword2: newPassword2, 
+			username: userLoggedIn})
+
+	.done(function(response) 
+	{
+		$("." + oldPasswordClass).nextAll(".message").text(response);
+	})
+
+
+}
+
 function logout() 
 {
 	$.post("includes/handlers/ajax/logout.php", function() 
@@ -53,9 +87,11 @@ function logout()
 	});
 }
 
-function openPage(url) {
+function openPage(url) 
+{
 
-	if(timer != null) {
+	if(timer != null) 
+	{
 		clearTimeout(timer);
 	}
 
@@ -65,7 +101,6 @@ function openPage(url) {
 	}
 
 	var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
-	console.log(encodedUrl);
 	$("#mainContent").load(encodedUrl);
 	$("body").scrollTop(0);
 	history.pushState(null, null, url);
@@ -78,6 +113,7 @@ function removeFromPlaylist(button, playlistId)
 	$.post("includes/handlers/ajax/removeFromPlaylist.php", { playlistId: playlistId, songId: songId })
 	.done(function(error) 
 	{
+
 		if(error != "") 
 		{
 			alert(error);
@@ -90,14 +126,16 @@ function removeFromPlaylist(button, playlistId)
 
 function createPlaylist() 
 {
-	console.log(userLoggedIn);
-	var popup = prompt("Please enter the name of your playlist");
+
+	var popup = prompt("Por favor entre com o nome da playlist");
 
 	if(popup != null) 
 	{
+
 		$.post("includes/handlers/ajax/createPlaylist.php", { name: popup, username: userLoggedIn })
 		.done(function(error) 
 		{
+
 			if(error != "") 
 			{
 				alert(error);
@@ -106,12 +144,14 @@ function createPlaylist()
 
 			openPage("yourMusic.php");
 		});
+
 	}
+
 }
 
 function deletePlaylist(playlistId) 
 {
-	var prompt = confirm("Você tem certerza em excluir esta playlist?");
+	var prompt = confirm("Você tem certeza em excluir esta playlist?");
 
 	if(prompt == true) 
 	{
@@ -119,6 +159,7 @@ function deletePlaylist(playlistId)
 		$.post("includes/handlers/ajax/deletePlaylist.php", { playlistId: playlistId })
 		.done(function(error) 
 		{
+
 			if(error != "") 
 			{
 				alert(error);
@@ -240,5 +281,4 @@ function Audio()
 	{
 		this.audio.currentTime = seconds;
 	}
-
 }
