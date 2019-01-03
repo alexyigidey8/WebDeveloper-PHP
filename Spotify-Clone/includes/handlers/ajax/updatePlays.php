@@ -8,5 +8,4 @@
 
 		$query = mysqli_query($con, "UPDATE songs SET plays = plays + 1 WHERE id='$songId'");
 	}
-
 ?>

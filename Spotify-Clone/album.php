@@ -1,4 +1,6 @@
-<?php include("includes/includedFiles.php"); 
+<?php 
+	
+	include("includes/includedFiles.php"); 
 
 	if(isset($_GET['id'])) 
 	{
@@ -22,12 +24,13 @@
 
 	<div class="rightSection">
 		<h2><?php echo $album->getTitle(); ?></h2>
-		<p role="link" tabindex="0" onclick="openPage('artist.php?id=$artistId')">Por <?php echo $artist->getName(); ?></p>
+		<p role="link" tabindex="0" onclick="openPage('artist.php?id=<?php echo $artistId; ?>')">Por <?php echo $artist->getName(); ?></p>
 		<p><?php echo $album->getNumberOfSongs(); ?> músicas</p>
 
 	</div>
 
 </div>
+
 
 
 <div class="tracklistContainer">

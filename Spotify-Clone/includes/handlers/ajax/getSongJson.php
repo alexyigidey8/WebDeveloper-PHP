@@ -1,5 +1,5 @@
 <?php
-	
+
 	include("../../config.php");
 
 	if(isset($_POST['songId'])) 
@@ -12,5 +12,4 @@
 
 		echo json_encode($resultArray);
 	}
-
 ?>
