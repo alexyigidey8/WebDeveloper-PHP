@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bem-vindo ao </title>
+	<title>Bem-vindo ao Google-Clone</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 		<div class="mainSection">
 	
 			<div class="logoContainer">
-				<img src="assets/images/thelsandro_google.png">
+				<img src="assets/images/doogao_google.png">
 			</div>
 
 			<div class="searchContainer">
