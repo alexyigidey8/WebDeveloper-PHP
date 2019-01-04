@@ -3,6 +3,7 @@
 <head>
 	<title>Bem-vindo ao Google-Clone</title>
 
+	<meta charset="UTF-8">
 	<meta name="description" content="Search the web for sites and images.">
 	<meta name="keywords" content="Search engine, doogao, websites">
 	<meta name="author" content="Thelsandro Antunes">
@@ -28,7 +29,7 @@
 				<form action="search.php" method="GET">
 
 					<input class="searchBox" type="text" name="term">
-					<input class="searchButton" type="submit" value="Search">
+					<input class="searchButton" type="submit" value="Pesquisar">
 
 
 				</form>

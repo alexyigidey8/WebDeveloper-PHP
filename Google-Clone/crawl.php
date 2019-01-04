@@ -53,7 +53,7 @@
 	{
 
 		$scheme = parse_url($url)["scheme"]; // http
-		$host = parse_url($url)["host"]; // www1.uea.edu.br/
+		$host = parse_url($url)["host"]; // ufam.edu.br
 		
 		if(substr($src, 0, 2) == "//") 
 		{
@@ -132,13 +132,12 @@
 		{
 			echo "SUCCESS: $url<br>";
 		}
-		else 
-		{
-			echo "ERROR: não inseriu $url<br>";
+		else {
+			echo "ERROR: Failed to insert $url<br>";
 		}
 
 		$imageArray = $parser->getImages();
-		
+
 		foreach($imageArray as $image) 
 		{
 			$src = $image->getAttribute("src");
@@ -156,7 +155,7 @@
 			{
 				$alreadyFoundImages[] = $src;
 
-				echo "INSERT: " . insertImage($url, $src, $alt, $title);
+				insertImage($url, $src, $alt, $title);
 			}
 
 		}
@@ -178,8 +177,7 @@
 		{
 			$href = $link->getAttribute("href");
 
-			if(strpos($href, "#") !== false) 
-			{
+			if(strpos($href, "#") !== false) {
 				continue;
 			}
 			else if(substr($href, 0, 11) == "javascript:") 
@@ -210,6 +208,8 @@
 
 	}
 
-	$startUrl = "http://www1.uea.edu.br/";
+	//$startUrl = "http://www1.uea.edu.br/";
+	$startUrl = "https://jovempan.uol.com.br/esportes/futebol";
 	followLinks($startUrl);
 ?>
+
