@@ -1,13 +1,19 @@
 <?php
+	
+	include("includes/config.php");
 
-	if(isset($_GET["term"])) {
-		$term = $_GET["term"];
-	}
-	else {
-		exit("Você deve digitar sua pesquisa");
-	}
+		if(isset($_GET["term"])) 
+		{
+			$term = $_GET["term"];
+		}
+		else 
+		{
+			exit("Digite sua pesquisa");
+		}
 
-	$type = isset($_GET['type'])  ? $_GET['type'] : 'sites';
+		$type = isset($_GET["type"]) ? $_GET["type"] : "sites";
+
+
 	
 ?>
 <!DOCTYPE html>
