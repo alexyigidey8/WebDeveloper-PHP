@@ -1,5 +1,5 @@
 <?php
-
+	
 	include("includes/config.php");
 	include("includes/classes/DomDocumentParser.php");
 
@@ -38,11 +38,11 @@
 	{
 		global $con;
 
-		$query = $con->prepare("INSERT INTO images(siteUrl, imageUrl, alt, title)
-								VALUES(:siteUrl, :imageUrl, :alt, :title)");
+		$query = $con->prepare("INSERT INTO images(siteurl, imageurl, alt, title)
+								VALUES(:siteurl, :imageurl, :alt, :title)");
 
-		$query->bindParam(":siteUrl", $url);
-		$query->bindParam(":imageUrl", $src);
+		$query->bindParam(":siteurl", $url);
+		$query->bindParam(":imageurl", $src);
 		$query->bindParam(":alt", $alt);
 		$query->bindParam(":title", $title);
 
@@ -52,8 +52,8 @@
 	function createLink($src, $url) 
 	{
 
-		$scheme = parse_url($url)["scheme"]; // http
-		$host = parse_url($url)["host"]; // ufam.edu.br
+		$scheme = parse_url($url)["scheme"]; // https
+		$host = parse_url($url)["host"]; // www.poli.usp.br/
 		
 		if(substr($src, 0, 2) == "//") 
 		{
@@ -132,8 +132,9 @@
 		{
 			echo "SUCCESS: $url<br>";
 		}
-		else {
-			echo "ERROR: Failed to insert $url<br>";
+		else 
+		{
+			echo "ERROR: Falha na inserção $url<br>";
 		}
 
 		$imageArray = $parser->getImages();
@@ -160,7 +161,6 @@
 
 		}
 
-
 	}
 
 	function followLinks($url) 
@@ -177,7 +177,8 @@
 		{
 			$href = $link->getAttribute("href");
 
-			if(strpos($href, "#") !== false) {
+			if(strpos($href, "#") !== false) 
+			{
 				continue;
 			}
 			else if(substr($href, 0, 11) == "javascript:") 
@@ -185,9 +186,7 @@
 				continue;
 			}
 
-
 			$href = createLink($href, $url);
-
 
 			if(!in_array($href, $alreadyCrawled)) 
 			{
@@ -208,8 +207,10 @@
 
 	}
 
-	//$startUrl = "http://www1.uea.edu.br/";
-	$startUrl = "https://jovempan.uol.com.br/esportes/futebol";
+	//$startUrl = "https://www.poli.usp.br/";
+	//$startUrl = "http://www2.uea.edu.br/";
+
+	$startUrl = "https://www.facebook.com/";
+
 	followLinks($startUrl);
 ?>
-

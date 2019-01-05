@@ -4,7 +4,7 @@
 *	Técnico em Redes de Computadores - CETAM
 *   Discente de Engenharia de Computação - UEA
 *   Projeto de Aplicativo de Busca de Conteúdo em PHP (Clone do Google)
-*   5ª Versão
+*   6ª Versão
 -->
 
 <!DOCTYPE html>
@@ -29,15 +29,17 @@
 		<div class="mainSection">
 
 			<div class="logoContainer">
-				<img src="assets/images/doogao_google.png" title="Logo of our site" alt="Site logo">
+				<div>
+					<img src="assets/images/brasaoImperial2.png">	
+				</div>
+				<img src="assets/images/doogao_google.png" title="Logo de nosso site" alt="Site logo">
 			</div>
-
-
+			
 			<div class="searchContainer">
 
 				<form action="search.php" method="GET">
 
-					<input class="searchBox" type="text" name="term">
+					<input class="searchBox" type="text" name="term" autocomplete="off">
 					<input class="searchButton" type="submit" value="Pesquisar">
 
 

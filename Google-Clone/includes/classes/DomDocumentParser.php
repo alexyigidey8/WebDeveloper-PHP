@@ -2,10 +2,10 @@
 	
 	class DomDocumentParser 
 	{
+
 		private $doc;
 
-		public function __construct($url) 
-		{
+		public function __construct($url) {
 
 			$options = array(
 				'http'=>array('method'=>"GET", 'header'=>"User-Agent: doogaoBot/0.1\n")
