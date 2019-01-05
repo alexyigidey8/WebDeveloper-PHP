@@ -1,3 +1,12 @@
+<!--
+*   Data: 05/01/2019
+*   Autor: Thelsandro Costa Antunes
+*	Técnico em Redes de Computadores - CETAM
+*   Discente de Engenharia de Computação - UEA
+*   Projeto de Aplicativo de Busca de Conteúdo em PHP (Clone do Google)
+*   5ª Versão
+-->
+
 <!DOCTYPE html>
 <html>
 <head>

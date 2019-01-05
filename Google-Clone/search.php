@@ -18,12 +18,18 @@
 
 	
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Bem-vindo ao Google-Clone</title>
 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  			crossorigin="anonymous">
+  	</script>
 
 </head>
 <body>
@@ -46,7 +52,7 @@
 					<form action="search.php" method="GET">
 
 						<div class="searchBarContainer">
-
+							<input type="hidden" name="type" value="<?php echo $type ?>">
 							<input class="searchBox" type="text" name="term" value="<?php echo $term; ?>">
 							<button class="searchButton">
 								<img src="assets/images/icons/search.png">
@@ -166,6 +172,6 @@
 		</div>
 
 	</div>
-
+	<script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>
