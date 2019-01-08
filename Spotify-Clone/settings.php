@@ -12,8 +12,8 @@
 	</div>
 
 	<div class="buttonItems">
-		<button class="button" onclick="openPage('updateDetails.php')">DETALHES</button>
-		<button class="button" onclick="logout()">LOGOUT</button>
+		<button class="button " onclick="openPage('updateDetails.php')">DETALHES</button>
+		<button class="button green" onclick="logout()">LOGOUT</button>
 	</div>
 
 
