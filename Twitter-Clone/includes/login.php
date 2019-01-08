@@ -10,13 +10,16 @@
 			$email = $getFromU->checkInput($email);
 			$password = $getFromU->checkInput($password);
 
-			if (!filter_var($email, FILTER_VALIDADE_EMAIL)) 
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
 			{
 				$error = "Formato Inválido";
 			}
 			else
 			{
-
+				if ($getFromU->login($email, $password) == false) 
+				{
+					$error = "O email e/ou a senha estão incorretos";
+				}
 			}
 
 		}
@@ -25,7 +28,7 @@
 			$error = "Por favor entre com o usuário ou senha";
 		}
 
-	}	
+	}
 
 ?>
 
@@ -36,7 +39,7 @@
 		  <input type="text" name="email" placeholder="Digite seu Email"/>
 		</li>
 		<li>
-		  <input type="password" name="password" placeholder="Senha"/><input type="submit" name="login" value="Log in"/>
+		  <input type="password" name="password" placeholder="Senha"/><input type="submit" name="login" value="Entrar"/>
 		</li>
 		<li>
 		  <input type="checkbox" Value="Remember me"> Lembre-me

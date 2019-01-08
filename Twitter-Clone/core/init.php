@@ -1,9 +1,9 @@
 <?php 
 
-	include("core/database/connection.php");
-	include("includes/classes/User.php");
-	include("includes/classes/Follow.php");
-	include("includes/classes/Tweet.php");
+	include("database/connection.php");
+	include("classes/User.php");
+	include("classes/Follow.php");
+	include("classes/Tweet.php");
 	
 	global $pdo;
 
