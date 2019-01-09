@@ -37,7 +37,14 @@
 				}
 				else
 				{
-					$user_id = $getFromU->create('users', array('email' => $email, 'password' => md5($password), 'screnname' => $screenName, 'profileimage' => 'assets/images/defaultprofileimage2.png', 'profilecover' => 'assets/images/defaultCoverImage2.png'));
+				
+					$user_id = $getFromU->create('users', array( 
+													 'email' => $email,
+													 'password' => md5($password),
+													 'screenname' => $screenName,
+													 'profileimage' => 'assets/images/defaultprofileimage.png',
+													 'profilecover' => 'assets/images/defaultCoverImage.png'
+													));
 					$_SESSION['user_id'] = $user_id;
 
 					header("Location: includes/signup.php?step=1");

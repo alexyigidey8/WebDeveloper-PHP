@@ -2,10 +2,9 @@
 
 	include("core/init.php");
 
-	$user_id = $_SESSION['user_id'];
+	$user_id = $_SESSION['user_id'] ;
 	$user = $getFromU->userData($user_id);
-	//$getFromU->update('users', $user_id, array('username'=>'bartSimpson')); 
-	$getFromU->create('users',array('username' => 'thelsandro', 'email'=>'thelsandro.antunes@gmail.com', 'password' => md5('password')));
+	
 ?>
 
 
@@ -13,10 +12,13 @@
  <html>
 	<head>
 		<title>Twitter-Clone</title>
-		  <meta charset="UTF-8" />
-		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"/>  
- 	  	  <link rel="stylesheet" href="assets/css/style-complete.css"/> 
-   		  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>  	  
+		  	<meta charset="UTF-8" />
+		  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>  
+ 	  	  	<link rel="stylesheet" href="assets/css/style-complete.css"/> 
+   		  	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  					integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  					crossorigin="anonymous">
+  			</script>  	  
 	</head>
 	<!--Helvetica Neue-->
 <body>

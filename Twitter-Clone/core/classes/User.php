@@ -45,7 +45,7 @@
 		public function register($email, $screenName, $password)
 		{
 			$stmt = $this->pdo->prepare("INSERT INTO users (email, password, screenname, profileimage, profilecover)
-										 VALUES (:email, :password, :screenname, 'assets/images/defaultprofileimage2.png', 'defaultCoverImage2.png')");
+										 VALUES (:email, :password, :screenname, 'assets/images/defaultprofileimage.png', 'defaultCoverImage.png')");
 			$stmt->bindParam(":email", $email, PDO::PARAM_STR);
 			$stmt->bindParam(":password", md5($password), PDO::PARAM_STR);
 			$stmt->bindParam(":screenname", $screenName, PDO::PARAM_STR);
@@ -78,18 +78,19 @@
 		public function create($table, $fields = array())
 		{
 			$columns = implode(',', array_keys($fields));
-			$values = ':' . implode(',', array_keys($fields));
+			$values = ':'.implode(', :', array_keys($fields));
 			$sql = "INSERT INTO {$table} 
 					({$columns}) VALUES ({$values})";
+			
 			if ($stmt = $this->pdo->prepare($sql)) 
 			{
-				foreach ($fields as $key => $value) 
+				foreach ($fields as $key => $data) 
 				{
 					$stmt->bindValue(':'.$key, $data);
 				}
 
 				$stmt->execute();
-
+ 
 				return $this->pdo->lastInsertId();
 				
 			}
@@ -119,7 +120,7 @@
 			{
 				foreach ($fields as $key => $value) 
 				{
-					$stmt->bindValue(':'.$key, $value);
+					$stmt->bindValue(':'.$key, $value); 
 				}
 
 				//var_dump($sql);
