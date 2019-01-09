@@ -4,6 +4,8 @@
 
 	$user_id = $_SESSION['user_id'];
 	$user = $getFromU->userData($user_id);
+	//$getFromU->update('users', $user_id, array('username'=>'bartSimpson')); 
+	$getFromU->create('users',array('username' => 'thelsandro', 'email'=>'thelsandro.antunes@gmail.com', 'password' => md5('password')));
 ?>
 
 

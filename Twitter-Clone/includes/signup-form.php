@@ -1,4 +1,50 @@
 <?php
+	
+	if (isset($_POST['signup'])) 
+	{
+		$screenName = $_POST['screenName'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$error = '';
+
+		if (empty($screenName) or empty($email) or empty($password)) 
+		{
+			$error = "Todos os campos são necessários";
+		}
+		else
+		{
+			$screenName = $getFromU->checkInput($screenName);
+			$email = $getFromU->checkInput($email);
+			$password = $getFromU->checkInput($password);
+
+			if (!filter_var($email)) 
+			{
+				$error = "Formato de Email Inválido";
+			}
+			else if (strlen($screenName) > 20) 
+			{
+				$error = "Nome deve estar entre 6 a 20 caracteres";
+			}
+			else if (strlen($password) < 5) 
+			{
+				$error = "A senha é muito curta";
+			}
+			else
+			{
+				if ($getFromU->checkEmail($email)) 
+				{
+					$error = "Email já está em uso";
+				}
+				else
+				{
+					$user_id = $getFromU->create('users', array('email' => $email, 'password' => md5($password), 'screnname' => $screenName, 'profileimage' => 'assets/images/defaultprofileimage2.png', 'profilecover' => 'assets/images/defaultCoverImage2.png'));
+					$_SESSION['user_id'] = $user_id;
+
+					header("Location: includes/signup.php?step=1");
+				}
+			}
+		}
+	}
 
 ?>
 
@@ -19,10 +65,17 @@
 			<input type="submit" name="signup" Value="Inscreva-se no TwitThel">
 		</li>
 	</ul>
-	<!--
-	 <li class="error-li">
-	  <div class="span-fp-error"></div>
-	 </li> 
-	-->
+	
+	<?php
+
+		if ( isset($error))
+		{
+			echo'<li class="error-li">
+				 	<div class="span-fp-error">'. $error .'</div>
+				 </li> ';
+		}
+	?>
+	 
+	
 </div>
 </form>
