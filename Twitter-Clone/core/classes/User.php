@@ -18,6 +18,20 @@
 			return $var;
 		}
 
+		public function search($search)
+		{
+			$stmt = $this->pdo->prepare("SELECT user_id, username, screenname, profileimage, profilecover
+										 FROM users
+										 WHERE username 
+										 LIKE ? OR screenname
+										 LIKE ?");
+			$stmt->bindValue(1, $search.'%', PDO::PARAM_STR);
+			$stmt->bindValue(2, $search.'%', PDO::PARAM_STR);
+			$stmt->execute();
+
+			return $stmt->fetchAll(PDO::FETCH_OBJ);
+		}
+
 		public function login($email, $password)
 		{
 			$stmt = $this->pdo->prepare("SELECT user_id 
@@ -72,7 +86,7 @@
 			$_SESSION = array();
 			session_destroy();
 
-			header('Location: ../index.php');
+			header('Location: '.BASE_URL.'index.php');
 		}
 
 		public function create($table, $fields = array())
@@ -163,6 +177,57 @@
 			else
 			{
 				return false;
+			}
+		}
+
+		public function loggedIn()
+		{
+			 return (isset($_SESSION['user_id'])) ? true : false; 
+		}
+
+		public function userIdByUsername($username)
+		{
+			$stmt = $this->pdo->prepare("SELECT user_id
+										 FROM users
+										 WHERE username = :username");	
+			$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+			$stmt->execute();
+			
+			$user = $stmt->fetch(PDO::FETCH_OBJ);
+
+			return $user->user_id;
+		}
+
+		public function uploadImage($file)
+		{
+			$filename = basename($file['name']);
+			$fileTmp  = $file['tmp_name'];
+			$fileSize = $file['size'];
+			$error    = $file['error'];
+
+			$ext = explode('.', $filename);
+			$ext = strtolower(end($ext));
+			$allowed_ext = array('jpg', 'png', 'jpeg');
+
+			if (in_array($ext, $allowed_ext) === true) 
+			{
+				if ($error === 0) 
+				{
+					if ($fileSize <= 209272152) 
+					{
+						$fileRoot = 'users/'.$filename;
+						move_uploaded_file($fileTmp, $fileRoot);
+						return $fileRoot;
+					}
+					else
+					{
+						$GLOBALS['imageError'] = "O tamanho do arquivo é muito longo";			
+					}
+				}
+			}
+			else
+			{
+				$GLOBALS['imageError'] = "A extensão não é compatível";
 			}
 		}
 	}

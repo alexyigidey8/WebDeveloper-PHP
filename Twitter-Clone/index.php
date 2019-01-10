@@ -1,6 +1,11 @@
 <?php
 
 	include("core/init.php");
+
+	if (isset($_SESSTION['user_id'])) 
+	{
+		header('Location: home.php');
+	}
 ?>
 
 

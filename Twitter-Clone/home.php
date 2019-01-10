@@ -5,6 +5,10 @@
 	$user_id = $_SESSION['user_id'] ;
 	$user = $getFromU->userData($user_id);
 	
+	if ($getFromU->loggedIn() === false) 
+	{
+		header('Location: index.php');
+	}
 ?>
 
 
@@ -41,7 +45,7 @@
 		<div class="nav-right">
 			<ul>
 				<li>
-					<input type="text" placeholder="Search" class="search"/>
+					<input type="text" placeholder="Pesquisar" class="search"/>
 					<i class="fa fa-search" aria-hidden="true"></i>
 					<div class="search-result">			
 					</div>
@@ -54,7 +58,7 @@
 						<ul>
 							<li><a href="<?php echo $user->username; ?>"><?php echo $user->username; ?></a></li>
 							<li><a href="settings/account">Configurações</a></li>
-							<li><a href="includes/logout.php">Sair</a></li>
+							<li><a href="<?php echo BASE_URL;?>includes/logout.php">Sair</a></li>
 						</ul>
 					</div>
 				</div>
@@ -68,6 +72,8 @@
 </div><!-- nav container ends -->
 
 </div><!-- header wrapper end -->
+
+<script type="text/javascript" src="assets/js/search.js"></script>
 
 <!---Inner wrapper-->
 <div class="inner-wrapper">
@@ -145,7 +151,7 @@
 						 </div>
 						 <div class="tweet-body">
 						 <form method="post" enctype="multipart/form-data">
-							<textarea class="status" name="status" placeholder="Type Something here!" rows="4" cols="50"></textarea>
+							<textarea class="status" name="status" placeholder="Digite o que está pensando!" rows="4" cols="50"></textarea>
  						 	<div class="hash-box">
 						 		<ul>
   						 		</ul>
