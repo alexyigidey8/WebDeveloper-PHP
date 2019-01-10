@@ -9,6 +9,35 @@
 	{
 		header('Location: index.php');
 	}
+
+	if (isset($_POST['tweet'])) 
+	{
+		$status = $getFromU->checkInput($_POST['status']);
+		$tweetImage = '';
+
+		if (!empty($status) or !empty($_FILES['file']['name'][0])) 
+		{
+			if (!empty($_FILES['file']['name'][0])) 
+			{
+				$tweetImage = $getFromU->uploadImage($_FILES['file']);
+			}
+
+			if (strlen($status) > 140) 
+			{
+				$error = "O texto do seu twitter é muito longo.";
+			}
+
+			$getFromU->create('tweets', 
+							   array('status' => $status, 
+									 'tweetby' => $user_id,
+									 'tweetimage' => $tweetImage,
+									 'postedon' => date('Y-m-d H:i:s')));
+		}
+		else
+		{
+			$error = "Digite ou escolha a imagem para twittar";
+		}
+	}
 ?>
 
 
@@ -18,7 +47,7 @@
 		<title>Twitter-Clone</title>
 		  	<meta charset="UTF-8" />
 		  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>  
- 	  	  	<link rel="stylesheet" href="assets/css/style-complete.css"/> 
+ 	  	  	<link rel="stylesheet" href="assets/css/style-complete.css"/>  	  	  	
    		  	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
   					integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   					crossorigin="anonymous">
@@ -74,6 +103,7 @@
 </div><!-- header wrapper end -->
 
 <script type="text/javascript" src="assets/js/search.js"></script>
+<script type="text/javascript" src="assets/js/hashtag.js"></script>
 
 <!---Inner wrapper-->
 <div class="inner-wrapper">
@@ -162,7 +192,19 @@
 						 		<ul>
 						 			<input type="file" name="file" id="file"/>
 						 			<li><label for="file"><i class="fa fa-camera" aria-hidden="true"></i></label>
-						 			<span class="tweet-error"></span>
+						 			<span class="tweet-error">
+						 			<?php 
+
+						 				if (isset($error)) 
+						 				{
+						 					echo $error;
+						 				} 
+						 				else if (isset($imageError))
+						 				{
+						 					echo $imageError;
+						 				}
+						 			?>						 				
+						 			</span>
 						 			</li>
 						 		</ul>
 						 	</div>
@@ -178,7 +220,7 @@
 			
 				<!--Tweet SHOW WRAPPER-->
 				 <div class="tweets">
- 				  	<!--TWEETS HERE-->
+ 				  	<?php $getFromT->tweets(); ?>
  				 </div>
  				<!--TWEETS SHOW WRAPPER-->
 
