@@ -32,6 +32,12 @@
 									 'tweetby' => $user_id,
 									 'tweetimage' => $tweetImage,
 									 'postedon' => date('Y-m-d H:i:s')));
+			preg_match_all("/#+([a-zA-Z0-9_]+)/i", $status, $hashtag);
+
+			if (!empty($hashtag)) 
+			{
+				$getFromT->addTrend($status);
+			}
 		}
 		else
 		{
@@ -220,7 +226,7 @@
 			
 				<!--Tweet SHOW WRAPPER-->
 				 <div class="tweets">
- 				  	<?php $getFromT->tweets(); ?>
+ 				  	<?php $getFromT->tweets($user_id);?>
  				 </div>
  				<!--TWEETS SHOW WRAPPER-->
 
@@ -229,7 +235,8 @@
 		    	</div>
 				<div class="popupTweet"></div>
 				<!--Tweet END WRAPER-->
- 			
+ 			<script type="text/javascript" src="assets/js/like.js"></script>
+ 			<script type="text/javascript" src="assets/js/retweet.js"></script>
 			</div><!-- in left wrap-->
 		</div><!-- in center end -->
 
