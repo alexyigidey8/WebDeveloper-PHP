@@ -10,8 +10,12 @@
 
 		public function tweets($user_id)
 		{
-			$stmt = $this->pdo->prepare("SELECT * FROM tweets, users
-										 WHERE tweetby = user_id");
+			$stmt = $this->pdo->prepare("SELECT * FROM tweets
+										 LEFT JOIN users
+										 ON tweetby = user_id
+										 WHERE tweetby = :user_id AND retweetid = 0
+										 OR tweetby = :user_id AND retweetid != :user_id");
+			$stmt->bindParam('user_id', $user_id, PDO::PARAM_INT);
 			$stmt->execute();
 			$tweets = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -20,18 +24,65 @@
 			foreach ($tweets as $tweet) 
 			{
 				$likes = $this->likes($user_id, $tweet->tweetid);				
+				$retweet = $this->checkRetweet($tweet->tweetid, $user_id);
+				$user = $this->userData($tweet->retweetby);
 
 				echo'
 					<div class="all-tweet">
 						<div class="t-show-wrap">	
 							<div class="t-show-inner">
-								<!-- this div is for retweet icon 
+								'.(($retweet['retweetid'] === $tweet->retweetid or $tweet->retweetid > 0) ? '
 								<div class="t-show-banner">
 									<div class="t-show-banner-inner">
 										<span><i class="fa fa-retweet" aria-hidden="true"></i></span>
-										<span>Screen-Name Retweeted</span>
+										<span>'.$user->screenname.' Retweeted</span>
 									</div>
-								</div>-->
+								</div>' 
+								
+								: '').'
+
+								'.((!empty($tweet->retweetmsg) && $tweet->tweetid === $retweet['tweetid'] or $tweet->retweetid > 0 ) ? 
+								'<div class="t-show-head">
+									<div class="t-show-img">
+										<img src="' .BASE_URL.$user->profileimage. '"/>
+									</div>
+									<div class="t-s-head-content">
+										<div class="t-h-c-name">
+											<span>
+												<a href= "' .BASE_URL.$user->username. '" > ' .$user->screenname. '</a>
+											</span>
+											<span>@'.$user->username.'</span>
+											<span>'.$retweet['postedon'].'</span>
+										</div>
+										<div class="t-h-c-dis">
+											'.$this->getTweetLinks($tweet->retweetmsg).'
+										</div>
+									</div>
+								</div>
+								<div class="t-s-b-inner">
+									<div class="t-s-b-inner-in">
+										<div class="retweet-t-s-b-inner">
+											'.((!empty($tweet->tweetimage)) ? '
+											<div class="retweet-t-s-b-inner-left">
+												<img src="'.BASE_URL.$tweet->tweetimage.'"/>	
+											</div>' 
+											
+											: '').'
+
+											<div class="retweet-t-s-b-inner-right">
+												<div class="t-h-c-name">
+													<span><a href="'.BASE_URL.$tweet->username.'">'.$tweet->screenname.'</a></span>
+													<span>@'.$tweet->username.'</span>
+													<span>'.$tweet->postedon.'</span>
+												</div>
+												<div class="retweet-t-s-b-inner-right-text">		
+													'.$tweet->status.'
+												</div>
+											</div>
+										</div>
+									</div>
+								' : '
+
 								<div class="t-show-popup">
 									<div class="t-show-head">
 										<div class="t-show-img">
@@ -49,12 +100,11 @@
 										</div>
 									</div>
 
-									';
+									'.
 
-									if (!empty($tweet->tweetimage)) 
-									{
-										echo' 
-											<!--tweet show head end-->
+									 ((!empty($tweet->tweetimage)) ? 
+									 
+									 	'<!--tweet show head end-->
 											<div class="t-show-body">
 											  <div class="t-s-b-inner">
 											   <div class="t-s-b-inner-in">
@@ -63,23 +113,30 @@
 											  </div>
 											</div>
 											<!--tweet show body end-->
-										';
-									}
+										' : ''). 
+							   '</div>').'
 
-									echo ' 
-								</div>
 								<div class="t-show-footer">
 									<div class="t-s-f-right">
 										<ul> 
 											<li><button><a href="#"><i class="fa fa-share" aria-hidden="true"></i></a></button></li>	
 											
-											<li>
-												<button class="retweet" data-tweet="'.$tweet->tweetid.'" data-user="'.$tweet->tweetby.'">
+											<li>'.(($tweet->tweetid === $retweet['retweetid'] ? 
+												'<button class="retweeted" data-tweet="'.$tweet->tweetid.'" data-user="'.$tweet->tweetby.'">
 													<a href="#">
 														<i class="fa fa-retweet" aria-hidden="true"></i>
 													</a>
-													<span class="retweetsCount"></span>
-												</button>
+													<span class="retweetsCount">'.$retweet->retweetcount.'</span>
+												</button>' 
+												
+												: 
+												
+												'<button class="retweeted" data-tweet="'.$tweet->tweetid.'" data-user="'.$tweet->tweetby.'">
+													<a href="#">
+														<i class="fa fa-retweet" aria-hidden="true"></i>
+													</a>
+													<span class="retweetsCount">'.(($tweet->retweetcount > 0) ? $tweet->retweetcount : '').'</span>
+												</button>' )).'												
 											</li>
 											
 											<li>'.(($likes['likeon'] === $tweet->tweetid) ? 
@@ -194,6 +251,20 @@
 			$stmt->bindParam(':tweet_id', $tweet_id, PDO::PARAM_INT);
 			$stmt->execute();
 
+		}
+
+		public function checkRetweet($tweet_id, $user_id)
+		{
+			$stmt = $this->pdo->prepare("SELECT * FROM tweets
+										 WHERE retweetid = :tweet_id
+										 AND retweetby = :user_id 
+										 OR tweetid = :tweet_id
+										 AND retweetby = :user_id");
+			$stmt->bindParam('tweet_id', $tweet_id, PDO::PARAM_INT);
+			$stmt->bindParam('user_id', $user_id, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		}
 
 		public function addLike($user_id, $tweet_id, $get_id)
