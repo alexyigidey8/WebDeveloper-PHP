@@ -8,14 +8,18 @@
 			$this->pdo = $pdo;
 		}
 
-		public function tweets($user_id)
+		public function tweets($user_id, $num)
 		{
 			$stmt = $this->pdo->prepare("SELECT * FROM tweets
 										 LEFT JOIN users
 										 ON tweetby = user_id
-										 WHERE tweetby = :user_id AND retweetid = 0
-										 OR tweetby = :user_id AND retweetid != :user_id");
+										 WHERE tweetby = :user_id 
+										 AND retweetid = 0
+										 OR tweetby = :user_id 
+										 AND retweetby != :user_id 
+										 LIMIT :num");
 			$stmt->bindParam('user_id', $user_id, PDO::PARAM_INT);
+			$stmt->bindParam('num', $num, PDO::PARAM_INT);
 			$stmt->execute();
 			$tweets = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -42,48 +46,51 @@
 								: '').'
 
 								'.((!empty($tweet->retweetmsg) && $tweet->tweetid === $retweet['tweetid'] or $tweet->retweetid > 0 ) ? 
-								'<div class="t-show-head">
-									<div class="t-show-img">
-										<img src="' .BASE_URL.$user->profileimage. '"/>
-									</div>
-									<div class="t-s-head-content">
-										<div class="t-h-c-name">
-											<span>
-												<a href= "' .BASE_URL.$user->username. '" > ' .$user->screenname. '</a>
-											</span>
-											<span>@'.$user->username.'</span>
-											<span>'.$retweet['postedon'].'</span>
+								'<div class="t-show-popup" data-tweet="'.$tweet->tweetid.'">
+									<div class="t-show-head">
+										<div class="t-show-img">
+											<img src="' .BASE_URL.$user->profileimage. '"/>
 										</div>
-										<div class="t-h-c-dis">
-											'.$this->getTweetLinks($tweet->retweetmsg).'
+										<div class="t-s-head-content">
+											<div class="t-h-c-name">
+												<span>
+													<a href= "' .BASE_URL.$user->username. '" > ' .$user->screenname. '</a>
+												</span>
+												<span>@'.$user->username.'</span>
+												<span>'.$this->timeAgo($retweet['postedon']).'</span>
+											</div>
+											<div class="t-h-c-dis">
+												'.$this->getTweetLinks($tweet->retweetmsg).'
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="t-s-b-inner">
-									<div class="t-s-b-inner-in">
-										<div class="retweet-t-s-b-inner">
-											'.((!empty($tweet->tweetimage)) ? '
-											<div class="retweet-t-s-b-inner-left">
-												<img src="'.BASE_URL.$tweet->tweetimage.'"/>	
-											</div>' 
-											
-											: '').'
+									<div class="t-s-b-inner">
+										<div class="t-s-b-inner-in">
+											<div class="retweet-t-s-b-inner">
+												'.((!empty($tweet->tweetimage)) ? '
+												<div class="retweet-t-s-b-inner-left">
+													<img src="'.BASE_URL.$tweet->tweetimage.'" class="imagePopup" data-tweet="'.$tweet->tweetid.'"/>	
+												</div>' 
+												
+												: '').'
 
-											<div class="retweet-t-s-b-inner-right">
-												<div class="t-h-c-name">
-													<span><a href="'.BASE_URL.$tweet->username.'">'.$tweet->screenname.'</a></span>
-													<span>@'.$tweet->username.'</span>
-													<span>'.$tweet->postedon.'</span>
-												</div>
-												<div class="retweet-t-s-b-inner-right-text">		
-													'.$tweet->status.'
+												<div >
+													<div class="t-h-c-name">
+														<span><a href="'.BASE_URL.$tweet->username.'">'.$tweet->screenname.'</a></span>
+														<span>@'.$tweet->username.'</span>
+														<span>'.$this->timeAgo($tweet->postedon).'</span>
+													</div>
+													<div class="retweet-t-s-b-inner-right-text">		
+														'.$this->getTweetLinks($tweet->status).'
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+								</div>
 								' : '
 
-								<div class="t-show-popup">
+								<div class="t-show-popup" data-tweet="'.$tweet->tweetid.'">
 									<div class="t-show-head">
 										<div class="t-show-img">
 											<img src="'.$tweet->profileimage.'"/>
@@ -92,7 +99,7 @@
 											<div class="t-h-c-name">
 												<span><a href="'.$tweet->username.'">'.$tweet->screenname.'</a></span>
 												<span>@'.$tweet->username.'</span>
-												<span>'.$tweet->postedon.'</span>
+												<span>'.$this->timeAgo($tweet->postedon).'</span>
 											</div>
 											<div class="t-h-c-dis">
 												'.$this->getTweetLinks($tweet->status).'
@@ -108,7 +115,7 @@
 											<div class="t-show-body">
 											  <div class="t-s-b-inner">
 											   <div class="t-s-b-inner-in">
-											     <img src="'.$tweet->tweetimage.'" class="imagePopup"/>
+											     <img src="'.$tweet->tweetimage.'" class="imagePopup" data-tweet="'.$tweet->tweetid.'"/>
 											   </div>
 											  </div>
 											</div>
@@ -119,14 +126,14 @@
 								<div class="t-show-footer">
 									<div class="t-s-f-right">
 										<ul> 
-											<li><button><a href="#"><i class="fa fa-share" aria-hidden="true"></i></a></button></li>	
+											<li><button><i class="fa fa-share" aria-hidden="true"></i></button></li>	
 											
 											<li>'.(($tweet->tweetid === $retweet['retweetid'] ? 
 												'<button class="retweeted" data-tweet="'.$tweet->tweetid.'" data-user="'.$tweet->tweetby.'">
 													<a href="#">
 														<i class="fa fa-retweet" aria-hidden="true"></i>
 													</a>
-													<span class="retweetsCount">'.$retweet->retweetcount.'</span>
+													<span class="retweetsCount">'.$tweet->retweetcount.'</span>
 												</button>' 
 												
 												: 
@@ -153,12 +160,14 @@
 												 	<span class="likesCounter">'.(($tweet->likescount > 0) ? $tweet->likescount : '').'</span>
 												 </button>').'
 											</li>
+
+											'.(($tweet->tweetby === $user_id) ? '
 																						
 											<li><a href="#" class="more"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
 												<ul> 
-											  		<li><label class="deleteTweet">Delete Tweet</label></li>
+											  		<li><label class="deleteTweet" data-tweet="'.$tweet->tweetid.'">Delete Tweet</label></li>
 												</ul>
-											</li>
+											</li>' : '').'
 										</ul>
 									</div>
 								</div>
@@ -243,7 +252,7 @@
 			$stmt->execute();
 
 			$stmt = $this->pdo->prepare('INSERT INTO tweets (status, tweetby, tweetimage, retweetid, retweetby, postedon, likescount, retweetcount, retweetmsg)
-										 SELECT status, tweetby, tweetimage, tweetid, :user_id, CURRENT_TIMESTAMP, likescount, retweetcount,:retweetMsg
+										 SELECT status, tweetby, tweetimage, tweetid, :user_id, postedon, likescount, retweetcount,:retweetMsg
 										 FROM tweets
 										 WHERE tweetid = :tweet_id');
 			$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -266,6 +275,61 @@
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 		}
+
+		public function comments($tweet_id){
+			$stmt = $this->pdo->prepare("SELECT * FROM comments
+										 LEFT JOIN users
+										 ON commentby = :user_id
+										 WHERE commenton = :tweet_id");
+			$stmt->bindParam('tweet_id', $tweet_id, PDO::PARAM_INT);
+			$stmt->bindParam('user_id', $user_id, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_OBJ);
+		}
+
+		public function countTweets($user_id){
+			$stmt = $this->pdo->prepare("SELECT COUNT(tweetid) 
+										 AS totaltweets
+										 FROM tweets
+										 WHERE tweetby = :user_id
+										 AND retweetid = 0
+										 OR retweetby = :user_id");
+			$stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+
+			$stmt->execute();
+			$count = $stmt->fetch(PDO::FETCH_OBJ);
+
+			echo $count->totaltweets;
+		}
+
+		public function countLikes($user_id){
+			$stmt = $this->pdo->prepare("SELECT COUNT(likeid)
+										 AS totallikes
+										 FROM likes
+										 WHERE likeby = :user_id");
+			$stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+
+			$stmt->execute();
+			$count = $stmt->fetch(PDO::FETCH_OBJ);
+
+			echo $count->totallikes;
+		}
+
+
+		public function getUserTweets($user_id){
+			$stmt = $this->pdo->prepare("SELECT * FROM tweets
+										 LEFT JOIN users
+										 ON tweetby = user_id
+										 WHERE tweetby = :user_id
+										 AND retweetid = 0
+										 OR retweetby = :user_id");
+			$stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+			$stmt->execute();
+
+			return $stmt->fetch(PDO::FETCH_OBJ);
+		}
+
 
 		public function addLike($user_id, $tweet_id, $get_id)
 		{

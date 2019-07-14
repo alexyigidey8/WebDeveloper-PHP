@@ -10,6 +10,8 @@
 		header('Location: index.php');
 	}
 
+	$getFromU->delete('comments', array('commentid' => '1'));
+
 	if (isset($_POST['tweet'])) 
 	{
 		$status = $getFromU->checkInput($_POST['status']);
@@ -144,7 +146,7 @@
 								TWEETS
 							</div>
 							<div class="num-body">
-								10
+								<?php $getFromT->countTweets($user_id); ?>
 							</div>
 						</div>
 						<div class="num-box">
@@ -226,7 +228,7 @@
 			
 				<!--Tweet SHOW WRAPPER-->
 				 <div class="tweets">
- 				  	<?php $getFromT->tweets($user_id);?>
+ 				  	<?php $getFromT->tweets($user_id,10);?>
  				 </div>
  				<!--TWEETS SHOW WRAPPER-->
 
@@ -235,8 +237,13 @@
 		    	</div>
 				<div class="popupTweet"></div>
 				<!--Tweet END WRAPER-->
- 			<script type="text/javascript" src="assets/js/like.js"></script>
- 			<script type="text/javascript" src="assets/js/retweet.js"></script>
+ 			 <script type="text/javascript" src="assets/js/like.js"></script>
+ 			 <script type="text/javascript" src="assets/js/retweet.js"></script>
+			 <script type="text/javascript" src="assets/js/popuptweets.js"></script>
+			 <script type="text/javascipt" src="assets/js/delete.js"></script>
+			 <script type="text/javascipt" src="assets/js/comment.js"></script>
+			 <script type="text/javascipt" src="assets/js/popupForm.js"></script>
+			 <script type="text/javascipt" src="assets/js/fetch.js"></script>
 			</div><!-- in left wrap-->
 		</div><!-- in center end -->
 

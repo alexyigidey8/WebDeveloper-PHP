@@ -136,9 +136,26 @@
 				{
 					$stmt->bindValue(':'.$key, $value); 
 				}
-
-				//var_dump($sql);
+				
 				$stmt->execute();		
+			}
+		}
+
+		public function delete($table, $array){
+			$sql   = "DELETE FROM '{$table}'";
+			$where = " WHERE ";
+
+			foreach ($array as $name => $value) {
+				$sql .= "{$where} '{$name}'  = :{$name}";
+				$where = " AND ";
+			}
+
+			if ($stmt = $this->pdo->prepare($sql)) {
+				foreach ($array as $name => $value) {
+					$stmt->bindValue(':'.$name, $value);
+				}
+
+				$stmt->execute();	
 			}
 		}
 
@@ -216,7 +233,7 @@
 					if ($fileSize <= 209272152) 
 					{
 						$fileRoot = 'users/'.$filename;
-						move_uploaded_file($fileTmp, $fileRoot);
+						move_uploaded_file($fileTmp, $_SERVER['DOCUMENT_ROOT'].'/Twitter-Clone/'.$fileRoot);
 						return $fileRoot;
 					}
 					else
@@ -228,6 +245,31 @@
 			else
 			{
 				$GLOBALS['imageError'] = "A extensão não é compatível";
+			}
+		}
+
+		public function timeAgo($datetime){
+			$timeAgo 	= strtotime($datetime);
+			$current	= time();
+			$seconds	= $current - $time;
+			$minutes 	= round($seconds / 60);
+			$hours		= round($seconds / 3600);
+			$months		= round($seconds / 2600640);
+
+			if ($seconds <= 60) {
+				if ($seconds == 0) {
+					return 'now';
+				}else{
+					return $seconds.'s';
+				}
+			}elseif ($minutes <= 60) {
+				return $minutes.'m';
+			}elseif ($hours <= 24) {
+				return $hours.'h';
+			}elseif ($months <= 12) {
+				return date('M j', $time);
+			}else{
+				return date('j M Y', $time);
 			}
 		}
 	}
